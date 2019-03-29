@@ -1,0 +1,28 @@
+	<section class="main_banner ">
+	<form [formGroup]="rForm" (ngSubmit)="SendPromo()">
+	<h1>Promo Code</h1>
+	
+	<div class="row">
+		<aside class="col-6">
+			<div class="form-group generate">
+				 <input  type="text" size="8" class="form-control" placeholder="Enter text" formControlName="random">
+				 <a (click)="GenrateNum()">Generate</a>
+			</div>
+			<span class="code_generate">Promo Code: <span>{{text1}}</span></span>
+		</aside>
+		<aside class="col-6">
+			<div class="form-group" style="position:relative;">
+				<input type="text" placeholder="User" aria-label="Number" matInput [formControl]="myControl" ([ngModel])="option" [matAutocomplete]="auto" class="form-control"  formControlName="user">
+		    	<mat-autocomplete style="background:#fff;" #auto="matAutocomplete" autoActiveFirstOption (optionSelected)="selectBeneficiary($event)">
+		      <mat-option *ngFor="let option of filteredOptions | async" [value]="option.first_name" (onSelectionChange)="setExchangeID(option._id)">
+		        {{ option.first_name}}
+		      </mat-option>
+		    	</mat-autocomplete>
+			</div>
+		</aside>
+	</div>
+	<button class="blue_btn yellow_btn text-uppercase" type="submit">Submit</button>
+
+
+</form>
+	</section >

@@ -1,0 +1,40 @@
+<div class="login-page" [@routerTransition]>
+    <div class="row justify-content-md-center">
+        <div class="col-md-4">
+            <img src="../assets/images/logoo.png" width="150px" class="user-avatar" />
+            <h1>ScrimmageMatch</h1>
+            <form  [formGroup]="rForm" (ngSubmit)="login(rForm.value,rForm.valid)">
+                <div class="form-content">
+                    <div class="form-group">
+                        <input type="text"  class="form-control input-underline input-lg"  placeholder="Email" formControlName="email" >
+                    </div>
+                    <div *ngIf="rForm.get('email').hasError('required') && rForm.get('email').touched">
+                        <div class="error" *ngIf="rForm.get('email').hasError('required')  && rForm.get('email').touched ">
+                        Email is required
+                        </div>
+                        
+                    </div>
+                    <div class="form-group">
+                        <input type="password" class="form-control input-underline input-lg"  placeholder="Password" formControlName="password">
+                    </div>
+                     <div *ngIf="rForm.get('password').hasError('required') && rForm.get('password').touched">
+                        <div class="error" *ngIf="rForm.get('password').hasError('required')  && rForm.get('password').touched ">
+                        password is required
+                        </div>
+                        
+                    </div>
+                </div>
+                <button class="btn rounded-btn" type="submit"> Log in </button>
+                &nbsp;
+                <!-- <a class="btn rounded-btn" [routerLink]="['/signup']">Register</a> -->
+            </form>
+        </div>
+    </div>
+</div>
+<style type="text/css">
+.error
+{
+color:red;
+}
+
+</style>

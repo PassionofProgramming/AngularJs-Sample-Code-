@@ -1,0 +1,51 @@
+<div class="content_area">
+	<h2>User Detail</h2>
+	<div class="profile_view">
+		  <img src="../../assets/images/dancer.png" alt="" />
+		  <p><b>Username:</b> {{userdetail?.first_name}}</p>
+		  <p><b>Email:</b> {{userdetail?.email}}</p>
+		  <p><b>Account Type:</b> {{userdetail?.account_type}}</p>
+		  <p *ngIf="userdetail?.register_type=='O'"><b>Registeration Type:</b> Other</p>
+           <p *ngIf="userdetail?.register_type=='F'"><b>Registeration Type:</b> Facebook</p>
+            <p *ngIf="userdetail?.register_type=='G'"><b>Registeration Type:</b> Google</p>
+	</div>
+    <div class="tables_area">
+        <h2 class="pull-left">User's Match Update</h2>
+        <div class="clear"></div>
+    
+        <div class="white_box" *ngIf="match_status!=0">
+            <div class="table-responsive">
+                <table id="example" width="100%" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <!-- <th width="5%">#</th> -->
+                            <th width="15%">Team Name</th>
+                            <th width="30%">Other Team</th>
+                            <th width="10%">Start Time</th>
+                            <th width="10%">End Time</th>
+                            <th width="10%">Date</th>
+                            <!-- <th width="10%">Action</th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of usermatches">
+                            <td>{{user.team_id.team_name}}</td>
+                            <td>{{user.other_team_id.team_name}}</td>
+                            <td >{{user.from_time}}</td>
+                            <td>{{user.to_time}}</td>
+                             <td>{{user.date_of_match}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <div *ngIf="match_status==0">
+          <p>No Match's Update Available yet</p>
+        </div>
+
+
+    </div>
+
+</div>

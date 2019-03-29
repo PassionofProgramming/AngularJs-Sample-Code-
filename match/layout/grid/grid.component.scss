@@ -1,0 +1,55 @@
+.generate
+{
+	position:relative;
+	a
+	{
+		position: absolute;
+		right: 0;
+		top: 0;
+		height: 100%;
+		border: none;
+		background: #ddd;
+		padding: 7px 15px;
+		border-radius: 0;
+	}
+	input
+	{
+		padding-right:100px;
+	}
+}
+.blue_btn
+{
+	background: #0984e3;;
+	border-radius: 5px;
+	color: #fff !important;
+	text-decoration:none !important;
+	font-size: 14px;
+	border: none;
+	padding: 5px 22px;
+	display: inline-block;
+	line-height: 26px;
+	margin-top: 20px;
+	font-weight: 600;
+}
+.blue_btn:hover
+{
+	background: #999;
+}
+.code_generate
+{
+	span
+	{
+		color:green;
+	}
+}
+
+::ng-deep .cdk-overlay-backdrop, ::ng-deep .cdk-overlay-pane {
+    position: absolute;
+    pointer-events: auto;
+    z-index: 1000;
+}
+/*::ng-deep .cdk-overlay-container {
+    position: fixed; 
+    z-index: 1000;
+}
+ .cdk-overlay-container { z-index: 9999; }*/

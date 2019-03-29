@@ -1,0 +1,533 @@
+<html>
+
+<head>
+    <title>ScrimmmageMatch</title>
+</head>
+
+<body>
+    <h1>Web Services for ScrimmmageMatch</h1>
+    <h2>BaseUrl - http://192.168.2.53:3000/</h2>
+    ***************************************************************************************
+
+
+    <h3>(1) Sign Up (/api/signup)</h3>
+    <form action="/api/signup" method="post">
+        <table>
+            <tr>
+                <td>First Name </td>
+                <td>
+                    <input type="text" name="first_name">first_name</td>
+            </tr>
+            <tr>
+                <td>Last Name </td>
+                <td>
+                    <input type="text" name="last_name">last_name</td>
+            </tr>
+            <tr>
+                <td>Email </td>
+                <td>
+                    <input type="text" name="email">email</td>
+            </tr>
+            <tr>
+                <td>Password </td>
+                <td>
+                    <input type="text" name="password">password</td>
+            </tr>
+            <tr>
+                <td>Register Type </td>
+                <td>
+                    <input type="text" name="register_type">register_type (F- facebook, G- Google, O- Other)</td>
+            </tr>
+            <tr>
+                <td>Social Media ID </td>
+                <td>
+                    <input type="text" name="social_media_id">social_media_id</td>
+            </tr>
+
+            <tr>
+                <td>
+                    <button type="submit">Submit</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+
+    ***************************************************************************************
+    <h3>(2) Login (/api/login)</h3>
+    <form action="/api/login" method="POST">
+        <table>
+            <tr>
+                <td>Email </td>
+                <td>
+                    <input type="text" name="email">email</td>
+            </tr>
+            <tr>
+                <td>Password </td>
+                <td>
+                    <input type="text" name="password">password</td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit">Submit</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    ***************************************************************************************
+    <h3>(3) Age Group (/api/ageGroup)</h3>
+
+    <form action="/api/ageGroup" method="get">
+        <table>
+            <tr>
+                <td>
+                    <button type="submit">Get Age Group</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    ***************************************************************************************
+    <h3>(4) Skill Level (/api/getskill)</h3>
+
+    <form action="/api/getskill" method="get">
+        <table>
+            <tr>
+                <td>
+                    <button type="submit">Get Skill</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+
+      ***************************************************************************************
+    <h3>(5) Get Sports (/api/get_sports)</h3>
+
+    <form action="/api/get_sports" method="get">
+        <table>
+            <tr>
+                <td>
+                    <button type="submit">Get Sports</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+
+    ***************************************************************************************
+    <h3>(6) Forgot password (/api/forgot_password)</h3>
+
+    <form action="/api/forgot_password" method="post">
+        <table>
+            <tr>
+                <td>Email </td>
+                <td>
+                    <input type="text" name="email">email</td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit">Forgot Password</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    ***************************************************************************************
+    <h3>(7) Create team (/api/create_team)</h3>
+
+    <form action="/api/create_team" method="post" enctype="multipart/form-data">
+        <table>
+         <tr>
+                <td>user_id </td>
+                <td>
+                    <input type="text" name="user_id">user_id</td>
+            </tr>
+            <tr>
+                <td>sport_name </td>
+                <td>
+                    <input type="text" name="sport_name">sport_name</td>
+            </tr>
+            <tr>
+                <td>team_name </td>
+                <td>
+                    <input type="text" name="team_name">team_name</td>
+            </tr>
+            <tr>
+                <td>age_group </td>
+                <td>
+                    <input type="text" name="age_group">age_group</td>
+            </tr>
+            <tr>
+                <td>skill_level </td>
+                <td>
+                    <input type="text" name="skill_level">skill_level</td>
+            </tr>
+            <tr>
+                <td>location </td>
+                <td>
+                    <input type="text" name="location">location</td>
+            </tr>
+               <tr>
+                <td>latitude </td>
+                <td>
+                    <input type="text" name="latitude">latitude</td>
+            </tr>
+            <tr>
+                <td>longitude </td>
+                <td>
+                    <input type="text" name="longitude">longitude</td>
+            </tr>
+            <tr>
+                <td>gender </td>
+                <td>
+                    <input type="text" name="gender">gender(M=male ,F=female)</td>
+            </tr>
+            <tr>
+                <td>Team Image</td>
+                <td>
+                    <input type="file" name="team_image">team_image</td>
+            </tr>
+            <tr>
+                <td>Cover Image</td>
+                <td>
+                    <input type="file" name="cover_image">cover_image</td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit">create team</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+
+
+    ***************************************************************************************
+    <h3>(8) Get NearBy Scrimmages (/api/get_nearby_scrimmages)</h3>
+    <form action="/api/get_nearby_scrimmages" method="POST">
+        <table>
+         <tr>
+                <td>user_id </td>
+                <td>
+                    <input type="text" name="user_id">user_id</td>
+            </tr>
+            <tr>
+                <td>Latitude </td>
+                <td>
+                    <input type="text" name="latitude">latitude</td>
+            </tr>
+            <tr>
+                <td>Longitude </td>
+                <td>
+                    <input type="text" name="longitude">longitude</td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit">Submit</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+
+
+    ***************************************************************************************
+    <h3>(9) Get My Teams (/api/get_my_teams)</h3>
+    <form action="/api/get_my_teams" method="POST">
+        <table>
+         <tr>
+                <td>user_id </td>
+                <td>
+                    <input type="text" name="user_id">user_id</td>
+            </tr>
+          
+        </table>
+    </form>
+
+
+    ***************************************************************************************
+    <h3>(10) Get Team Detail (/api/get_team_detail)</h3>
+    <form action="/api/get_team_detail" method="POST">
+        <table>
+         <tr>
+                <td>team_id </td>
+                <td>
+                    <input type="text" name="team_id">team_id</td>
+            </tr>
+          
+        </table>
+    </form>
+
+
+
+    ***************************************************************************************
+    <h3>(11) Search with Filters (/api/search_with_filters)</h3>
+    <form action="/api/search_with_filters" method="POST">
+        <table>
+         <tr>
+                <td>user Id </td>
+                <td>
+                    <input type="text" name="user_id">user_id</td>
+            </tr>
+                   <tr>
+                <td>location latitude </td>
+                <td>
+                    <input type="text" name="loc_lat">loc_lat</td>
+            </tr>
+                     <tr>
+                <td>location longitude </td>
+                <td>
+                    <input type="text" name="loc_lng">loc_lng</td>
+            </tr>
+
+             <tr>
+                <td> Sport </td>
+                <td>
+                    <input type="text" name="sport">sport</td>
+            </tr>
+
+              <tr>
+                <td> skill level </td>
+                <td>
+                    <input type="text" name="skill_level">skill_level</td>
+            </tr>
+
+             <tr>
+                <td>Age Group </td>
+                <td>
+                    <input type="text" name="age_group">age_group</td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit">Submit</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+
+    ***************************************************************************************
+    <h3>(12) Send Request Scrimmage (/api/send_request_scrimmage)</h3>
+    <form action="/api/send_request_scrimmage" method="POST">
+        <table>
+         <tr>
+                <td>user Id </td>
+                <td>
+                    <input type="text" name="user_id">user_id</td>
+            </tr>
+                   <tr>
+                <td>Team Id </td>
+                <td>
+                    <input type="text" name="team_id">team_id</td>
+            </tr>
+            <tr>
+              <td>Other user Id </td>
+                <td>
+                    <input type="text" name="other_user_id">other_user_id</td>
+            </tr>
+               <tr>
+                <td>Other Team Id </td>
+                <td>
+                    <input type="text" name="other_team_id">other_team_id</td>
+            </tr>
+                     <tr>
+                <td>date_of_match </td>
+                <td>
+                    <input type="text" name="date_of_match">date_of_match (yyyy-mm-dd)</td>
+            </tr>
+
+             <tr>
+                <td> from_time </td>
+                <td>
+                    <input type="text" name="from_time">from_time</td>
+            </tr>
+
+              <tr>
+                <td> To time </td>
+                <td>
+                    <input type="text" name="to_time">to_time</td>
+            </tr>
+
+            <tr>
+                <td>
+                    <button type="submit">Submit</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+
+
+ ***************************************************************************************
+    <h3>(13) Get upcoming completed scrimmages (/api/get_upcoming_completed_scrimmages)</h3>
+    <form action="/api/get_upcoming_completed_scrimmages" method="POST">
+        <table>
+         <tr>
+                <td>user_id </td>
+                <td>
+                    <input type="text" name="user_id">user_id</td>
+            </tr>
+             <tr>
+                <td>
+                    <button type="submit">Submit</button>
+                </td>
+            </tr>
+          
+        </table>
+    </form>
+
+
+ ***************************************************************************************
+    <h3>(14) Get pending scrimmages (/api/get_pending_scrimmages)</h3>
+    <form action="/api/get_pending_scrimmages" method="POST">
+        <table>
+         <tr>
+                <td>user_id </td>
+                <td>
+                    <input type="text" name="user_id">user_id</td>
+            </tr>
+           <tr>
+                <td>
+                    <button type="submit">Submit</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+
+
+ ***************************************************************************************
+    <h3>(15) Accept/Reject scrimmage Request (/api/accept_reject_scrimmage_request)</h3>
+    <form action="/api/accept_reject_scrimmage_request" method="POST">
+        <table>
+         <tr>
+            <td>request_id </td>
+            <td>
+                <input type="text" name="request_id">request_id</td>
+         </tr>
+            <tr>
+            <td>status </td>
+            <td>
+                <input type="text" name="status">status (Accept- A, Cancel - C)</td>
+         </tr>
+          <tr>
+                <td>
+                    <button type="submit">Submit</button>
+                </td>
+            </tr>
+          
+        </table>
+    </form>
+
+
+
+ ***************************************************************************************
+    <h3>(16) Delete my team (/api/delete_my_team)</h3>
+    <form action="/api/delete_my_team" method="POST">
+        <table>
+         <tr>
+                <td>team_id </td>
+                <td>
+                    <input type="text" name="team_id">team_id</td>
+            </tr>
+          
+        </table>
+    </form>
+
+
+
+ ***************************************************************************************
+    <h3>(7) Edit team (/api/edit_team)</h3>
+
+    <form action="/api/edit_team" method="post" enctype="multipart/form-data">
+        <table>
+         <tr>
+                <td>team_id </td>
+                <td>
+                    <input type="text" name="team_id">team_id</td>
+            </tr>
+            <tr>
+                <td>sport_name </td>
+                <td>
+                    <input type="text" name="sport_name">sport_name</td>
+            </tr>
+            <tr>
+                <td>team_name </td>
+                <td>
+                    <input type="text" name="team_name">team_name</td>
+            </tr>
+            <tr>
+                <td>age_group </td>
+                <td>
+                    <input type="text" name="age_group">age_group</td>
+            </tr>
+            <tr>
+                <td>skill_level </td>
+                <td>
+                    <input type="text" name="skill_level">skill_level</td>
+            </tr>
+            <tr>
+                <td>location </td>
+                <td>
+                    <input type="text" name="location">location</td>
+            </tr>
+               <tr>
+                <td>latitude </td>
+                <td>
+                    <input type="text" name="latitude">latitude</td>
+            </tr>
+            <tr>
+                <td>longitude </td>
+                <td>
+                    <input type="text" name="longitude">longitude</td>
+            </tr>
+            <tr>
+                <td>gender </td>
+                <td>
+                    <input type="text" name="gender">gender(M=male ,F=female)</td>
+            </tr>
+            <tr>
+                <td>Team Image</td>
+                <td>
+                    <input type="file" name="team_image">team_image</td>
+            </tr>
+            <tr>
+                <td>Cover Image</td>
+                <td>
+                    <input type="file" name="cover_image">cover_image</td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit">create team</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+
+
+
+<!--  ***************************************************************************************
+    <h3>(14) Get My Profile (/api/get_my_profile)</h3>
+    <form action="/api/get_my_profile" method="POST">
+        <table>
+         <tr>
+                <td>user_id </td>
+                <td>
+                    <input type="text" name="user_id">user_id</td>
+            </tr>
+           <tr>
+                <td>
+                    <button type="submit">Submit</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+ -->
+
+
+</body>
+
+</html>

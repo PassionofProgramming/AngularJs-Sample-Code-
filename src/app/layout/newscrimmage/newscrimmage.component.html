@@ -1,0 +1,68 @@
+<section class="setting_tab my_scrimmage_page">
+	<div class="container">
+		<div class="row">
+	            <div class="col-md-9 col-sm-7">
+	                <div class="tab-content">
+	                  <div>
+	                      <h3>New Scrimmages</h3>
+	                    	<div class="main_details" *ngFor="let data of pendingData">
+		                    	<div class="scrimmage_img">
+				                      <img style="height:180px;width:180px;" src="{{data.team_id.team_image}}">
+				                </div>
+		                    	<div class="my_scrimmage_details">
+			               			  	<div class="sport_details">
+											<h3>{{data.team_id.team_name}}</h3>
+											<p>{{data.team_id.location}} (2 miles away)</p>
+											<p class="age_limit"><span>{{data.team_id.sport_name.sport}}</span>({{data.team_id.age_group.agegroup}} years)</p>
+											<div class="time_details">
+												<div class="send_link_btn">
+													<img src="../assets/images/gender.png">
+													<p *ngIf="data.team_id.gender=='M'">Male</p>
+													<p *ngIf="data.team_id.gender=='F'">Female</p>
+												</div>
+												<div class="send_link_btn">
+													<img src="../assets/images/skill.png">
+													<p>{{data.team_id.skill_level.skill}}</p>
+												</div>
+												<div class="clearfix"></div>
+											</div>
+										</div>
+										<div class="time_details">
+											<div class="send_link_btn">
+												<img src="../assets/images/date.png">
+												<p>{{data.date_of_match}}</p>
+											</div>
+											<div class="send_link_btn">
+												<img src="../assets/images/time.png">
+												<p>{{data.from_time}} to {{data.to_time}}</p>
+											</div>
+										</div>
+		                    	</div>
+		                    	<div class="accept_btn">
+		               			  	<div class="time_details">
+										<div class="send_link_btn">
+											<a (click)="acceptRejectScrimmages(data._id,'A')">
+												<img src="../assets/images/accept.png">
+												<p >Accept</p>
+											</a>
+										</div>
+										<div class="send_link_btn">
+											<a (click)="acceptRejectScrimmages(data._id,'C')">
+												<img src="../assets/images/reject.png">
+												<p >Reject</p>
+											</a>
+										</div>
+									</div>
+		               			 </div>
+		               			 <div class="clearfix"></div>
+	               			 </div>
+
+	                    </div>
+		               			
+	               			 </div>
+	               			 
+	              </div>      
+	                 
+	    </div>
+   </div>
+</section>

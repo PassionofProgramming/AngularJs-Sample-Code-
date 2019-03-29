@@ -1,0 +1,43 @@
+<div class="content_area">
+
+    <div class="tables_area">
+        <h2 class="pull-left">Report Abuse management(Complains/Suggestions)</h2>
+        <div class="clear"></div>
+    
+        <div class="white_box">
+            <div class="table-responsive">
+                <table id="example" width="100%" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <!-- <th width="5%">#</th> -->
+                            <th width="15%">Name</th>
+                            <th width="30%">Email</th>
+                            <th width="10%">Account Type</th>
+                            <th width="10%">Profile</th>
+                            <th width="10%">Type</th>
+                            <th width="10%">Message</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of users">
+                            <td>{{user.user_id.first_name}}</td>
+                            <td>{{user.user_id.email}}</td>
+                            <td>{{user.user_id.account_type}}</td>
+                            <td *ngIf="user.user_id.profile_image">
+                                <img src="{{user.user_id.profile_image}}" alt="" style="height:75px;width: 75px;border-radius: 100%;" />
+                            </td>
+                            <td *ngIf="!user.user_id.profile_image">
+                                <img src="../../assets/images/logo.png" alt="" style="height:75px;width: 75px;border-radius: 100%;" />
+                            </td>
+                            <td>{{user.type}}</td>
+                            <td>{{user.content}}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+</div>

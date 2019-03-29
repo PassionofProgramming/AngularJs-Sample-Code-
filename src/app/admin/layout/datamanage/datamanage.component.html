@@ -1,0 +1,274 @@
+<div class="content_area">
+
+    <div class="tables_area">
+        <h2 class="pull-left">Data Management</h2>
+        <div class="clear"></div>
+    
+    <div class="row data-management-table">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <p class="pull-left">Sports</p>
+                        	<a class="blue_btn yellow_btn pull-right text-uppercase" data-toggle="modal" data-target="#addsport">Add New</a>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr >
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let sport of sports">
+                                <th scope="row">{{sport.serial_no}}</th>
+                                <td>{{sport.sport}}</td>
+                                <td><a class="action_btn" (click)="removeList(sport._id,'SP')">
+    									<i class="fa fa-trash" aria-hidden="true"></i>
+    								</a>
+                                 <a class="action_btn">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                 </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+               <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                       <p class="pull-left">Skill Level</p>
+                        	<a class="blue_btn yellow_btn pull-right text-uppercase" data-toggle="modal" data-target="#addskill">Add New</a>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let skill of skills">
+                                <th scope="row">{{skill.serial_no}}</th>
+                                <td>{{skill.skill}}</td>
+                                    <td><a class="action_btn" (click)="removeList(skill._id,'SK')">
+    									<i class="fa fa-trash" aria-hidden="true"></i>
+    								</a>
+                                  <a class="action_btn">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                 </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+
+  
+    </div>
+        <div class="row data-management-table">
+               <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <p class="pull-left">Age Group</p>
+                        	<a class="blue_btn yellow_btn pull-right text-uppercase" data-toggle="modal" data-target="#addage">Add New</a>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let age of ages">
+                                <th scope="row">{{age.serial_no}}</th>
+                                <td>{{age.agegroup}}</td>
+                                  <td><a class="action_btn" (click)="removeList(age._id,'AG')">
+    									<i class="fa fa-trash" aria-hidden="true"></i>
+    								</a>
+                                      <a class="action_btn">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                 </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <p class="pull-left">Gender</p>
+                            <a class="blue_btn yellow_btn pull-right text-uppercase" data-toggle="modal" data-target="#addgender">Add New</a>
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Name</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr *ngFor="let gender of gender">
+                                <th scope="row">{{gender.serial_no}}</th>
+                                <td>{{gender.gender}}</td>
+                                  <td><a class="action_btn" (click)="removeList(gender._id,'GN')">
+                                        <i class="fa fa-trash" aria-hidden="true"></i>
+                                    </a>
+                                      <a class="action_btn">
+                                        <i class="fa fa-edit" aria-hidden="true"></i>
+                                 </a>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+<!-- /**************************************Add New Sport *****************************************/ -->
+
+		<div class="modal fade" id="addsport" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-body text-center">
+											<p>New Sport</p>
+								<form  [formGroup]="sportForm" (ngSubmit)="AddSports(sportForm.valid,sportForm.value)">
+								<div class="form-group">
+								    <input type="text"  class="form-control"  value="" placeholder="Sport*" [attr.maxlength]="50" id="name" formControlName="sport"/>
+								</div>
+
+								  <div *ngIf="sportForm.get('sport').hasError('required') && sportForm.get('sport').touched">
+                        <div class="error" *ngIf="sportForm.get('sport').hasError('required')  && sportForm.get('sport').touched ">
+                        Sport is required
+                        </div>
+                        </div>
+											<button type="submit" class="blue_btn">Save</button>
+											<a data-dismiss="modal" class="blue_btn">Cancel</a>
+											</form>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+
+ <!-- /**************************************Add New Gender *****************************************/ -->
+
+        <div class="modal fade" id="addgender" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-body text-center">
+                                            <p>New Gender</p>
+                                <form  [formGroup]="genderForm" (ngSubmit)="AddGender(genderForm.valid,genderForm.value)">
+                                <div class="form-group">
+                                    <input type="text"  class="form-control"  value="" placeholder="Gender*" [attr.maxlength]="50" id="name" formControlName="gender"/>
+                                </div>
+
+                                  <div *ngIf="genderForm.get('gender').hasError('required') && genderForm.get('gender').touched">
+                        <div class="error" *ngIf="genderForm.get('gender').hasError('required')  && genderForm.get('gender').touched ">
+                        Gender is required
+                        </div>
+                        </div>
+                                            <button type="submit" class="blue_btn">Save</button>
+                                            <a data-dismiss="modal" class="blue_btn">Cancel</a>
+                                            </form>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+<!-- /**************************************Add New Skill *****************************************/ -->
+
+		<div class="modal fade" id="addskill" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-body text-center">
+											<p>New Skill</p>
+								<form  [formGroup]="skillForm" (ngSubmit)="AddSkills(skillForm.valid,skillForm.value)">
+								<div class="form-group">
+								    <input type="text"  class="form-control"  value="" placeholder="Skill*" [attr.maxlength]="50" id="name" formControlName="skill"/>
+								</div>
+
+								  <div *ngIf="skillForm.get('skill').hasError('required') && skillForm.get('skill').touched">
+                        <div class="error" *ngIf="skillForm.get('skill').hasError('required')  && skillForm.get('skill').touched ">
+                        Skill is required
+                        </div>
+                        </div>
+											<button type="submit" class="blue_btn">Save</button>
+											<a data-dismiss="modal" class="blue_btn">Cancel</a>
+											</form>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+<!-- /**************************************Add New Age Gropu *****************************************/ -->
+
+		<div class="modal fade" id="addage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-body text-center">
+											<p>New Age Group</p>
+								<form  [formGroup]="ageForm" (ngSubmit)="AddAge(ageForm.valid,ageForm.value)">
+								<div class="form-group">
+								    <input type="text"  class="form-control"  value="" placeholder="Age group*" [attr.maxlength]="50" id="name" formControlName="agegroup"/>
+								</div>
+
+								  <div *ngIf="ageForm.get('agegroup').hasError('required') && ageForm.get('agegroup').touched">
+                        <div class="error" *ngIf="ageForm.get('agegroup').hasError('required')  && ageForm.get('agegroup').touched ">
+                        Age Group is required
+                        </div>
+                        </div>
+											<button type="submit" class="blue_btn">Save</button>
+											<a data-dismiss="modal" class="blue_btn">Cancel</a>
+											</form>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+
+<!-- /**************************************Delete Sport *****************************************/ -->
+	<div class="modal fade" id="deletsport" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-body text-center">
+											<p>Are you sure you want to Delete?</p>
+											<a class="blue_btn" (click)="deleteAll()">Yes</a>
+											<a data-dismiss="modal" class="blue_btn">No</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+<style type="text/css">
+.error
+{
+color:red;
+}
+
+</style>

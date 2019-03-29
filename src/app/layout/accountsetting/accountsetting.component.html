@@ -1,0 +1,297 @@
+<section class="setting_tab">
+	<div class="container">
+		<h3>Account Settings</h3>
+		<div class="row" role="tabpanel">
+	            <div class="col-md-3 col-sm-5">
+	                <ul class="nav nav-pills brand-pills nav-stacked" role="tablist">
+	                    <li class="nav-item">
+						    <a class="nav-link active" id="myprofile-tab" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true"><span class="icons_sprite profile_icon"></span>My Profile</a>
+						</li>
+	                     <li class="nav-item">
+						    <a class="nav-link " id="changepass-tab" data-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="true"><span class="icons_sprite changepassword_icon"></span>Change Password</a>
+						</li>
+	                  <li class="nav-item">
+						    <a class="nav-link " id="subscription-tab" data-toggle="tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="true"><span class="icons_sprite subscription_icon"></span>Subscription</a>
+						</li>
+	                     <li class="nav-item">
+						    <a class="nav-link " id="payments-tab" data-toggle="tab" href="#tab4" role="tab" aria-controls="tab4" aria-selected="true"><span class="icons_sprite payments_icon"></span>Payments</a>
+						</li>
+	                      <li class="nav-item">
+						    <a class="nav-link " id="delete-tab" data-toggle="tab" href="#tab5" role="tab" aria-controls="tab5" aria-selected="true"><span class="icons_sprite delete_icon"></span>Delete My Account</a>
+						</li>
+	                </ul>
+	            </div>
+	            <div class="col-md-8 col-sm-7 col-md-offset-1">
+	                <div class="tab-content">
+	                	 <div role="tabpanel" class="tab-pane fade show active" id="tab1" aria-labelledby="myprofile-tab">
+	                   <!--  <div role="tabpanel" class="tab-pane active" id="tab1"> -->
+	                      <div class="profile_setting">
+	         					<h3>My Profile</h3>
+	         					<form  [formGroup]="rForm" (ngSubmit)="EditProfile(rForm.valid)">
+	         					<div class="row">
+		                      		<div class="col-md-4">
+		                      			<div class="profile_pic_wrap">
+		                      				<img *ngIf="!img" src="{{profile}}">
+		                      				<img *ngIf="img" src="{{img}}">
+		                      				<a (click)="edit()">Edit Picture</a>
+		                      				<input *ngIf="imageLoaded" type="file" #fileupload (change)="onFileChange($event)" id="event_cover" style="max-height:100px;"/>
+		                      				<button type="submit" class="blue_btn btn-block">Save Profile</button>
+		                      			</div>
+		                      		</div>
+		                      		<div class="col-md-4">
+		                      			<div class="profile_form">
+		                      				
+		                      					<div class="form-group">
+												    <label for="email">First Name</label>
+												    <input type="email" class="form-control" value="Jon" formControlName="first_name">
+												    <!-- <img src="images/edit_icon.png"> -->
+												 </div>
+												  <div *ngIf="rForm.get('first_name').hasError('required') && rForm.get('first_name').touched">
+                        <div class="error" *ngIf="rForm.get('first_name').hasError('required')  && rForm.get('first_name').touched ">
+                        First Name is required
+                        </div>
+                        </div>
+												 <div class="form-group">
+												    <label for="email">Last Name</label>
+												    <input type="email" class="form-control" value="Smith" formControlName="last_name">
+												    <!--  <img src="images/edit_icon.png"> -->
+												 </div>
+												 <div *ngIf="rForm.get('last_name').hasError('required') && rForm.get('last_name').touched">
+                        <div class="error" *ngIf="rForm.get('last_name').hasError('required')  && rForm.get('last_name').touched ">
+                        Last Name is required
+                        </div>
+                        </div>
+												 <div class="form-group">
+												    <label for="email">Email Address</label>
+												    <input class="form-control" value="jonsmith@gmail.com" type="email" formControlName="email" readonly>
+												    <!--  <img src="images/edit_icon.png"> -->
+												 </div>
+
+		                      				
+		                      			</div>
+		                      		</div>
+	                      		</div>
+	                      		</form>
+	                      </div>
+	                    </div>
+	                    <div role="tabpanel" class="tab-pane fade" id="tab2" aria-labelledby="changepass-tab">
+	                   <!--  <div role="tabpanel" class="tab-pane" id="tab2"> -->
+	               			  <div class="profile_setting password_setting">
+
+         						<h3>Change Password</h3>
+	         					<p>Enter a new password for your account</p>
+	         					<div class="row">
+			                      		<div class="col-lg-4 col-md-6">
+			                      			<div class="profile_form password_form">
+			                      				<form [formGroup]="passForm" (ngSubmit)="ChangePassword(passForm.valid,passForm.value)">
+			                      					<div class="form-group">
+													    <label for="email">Current Password</label>
+													    <input type="email" class="form-control" value="Jon" formControlName="old_password" placeHolder="Enter Current Password">
+													 </div>
+													  <div *ngIf="passForm.get('old_password').hasError('required') && passForm.get('old_password').touched">
+                        <div class="error" *ngIf="passForm.get('old_password').hasError('required')  && passForm.get('old_password').touched ">
+                        Current Password is required
+                        </div>
+                        </div>
+													 <div class="form-group">
+													    <label for="email">New Password</label>
+													    <input type="password" class="form-control" value="********" placeHolder="Enter New Password"formControlName="new_password">
+													 </div>
+													 <div *ngIf="passForm.get('new_password').hasError('required') && passForm.get('new_password').touched">
+                        <div class="error" *ngIf="passForm.get('new_password').hasError('required')  && passForm.get('new_password').touched ">
+                        New Password is required
+                        </div>
+                        </div>
+													  <div class="form-group">
+													    <label for="email">Confirm New Password</label>
+													    <input type="password" class="form-control" placeHolder="Enter New Password" value="********" formControlName="con_password">
+													 </div>
+													 <div *ngIf="passForm.get('con_password').hasError('required') && passForm.get('con_password').touched">
+                        <div class="error" *ngIf="passForm.get('con_password').hasError('required')  && passForm.get('con_password').touched ">
+                        Confirm Password is required
+                        </div>
+                        </div>
+													 <button type="submit" class="blue_btn btn-block">Update Password</button>
+			                      				</form>
+			                      			</div>
+			                      		</div>
+	                      		</div>
+	                      		</div>
+	                    </div>
+	                       <div role="tabpanel" class="tab-pane fade" id="tab3" aria-labelledby="subscription-tab">
+	                    <!-- <div role="tabpanel" class="tab-pane" id="tab3"> -->
+	                      	   <div class="profile_setting subscription_setting">
+	         					<h3>Subscription</h3>
+	         					<div class="row">
+		                      		<div class="col-lg-4 col-md-6" *ngIf="app_status?.account_type == 'Trial'">
+		                      			<div class="subs_wrap">
+		                      				<div class="top_head">
+		                      					<p>TRIAL PACKAGE</p>
+		                      					<h3>{{app_status.daysRemaining}} Days <br> Remaining</h3>
+		                      				</div>
+		                      				<h3 class="active_pack">Your trial pack is active now</h3>
+		                      			</div>
+		                      		</div>
+		                      		<div class="col-lg-4 col-md-6">
+		                      			<div class="subs_wrap">
+		                      				<div class="top_head">
+		                      					<p>BASIC PACKAGE</p>
+		                      					<span>$2.49/mo</span>
+		                      				</div>
+		                      				<ul>
+		                      					<li>5 Team Profiles</li>
+		                      					<li>Unlimited Scrimmages</li>
+		                      					<li>Coach Chat {{app_status?.account_type}}</li>
+		                      					<li> Past, Pending, and Upcoming<br> Scrimmage Schedules</li>
+		                      				</ul>
+		                      				<a *ngIf="app_status?.account_type == 'Trial'" (click)="chooseCard()" class="blue_btn buy_btn">Buy Now</a>
+		                      				<a *ngIf="app_status?.account_type == 'Paid'" class="blue_btn buy_btn">Subscribed</a>
+		                      			</div>
+		                      		</div>
+	                      		</div>
+	                      </div>
+	                    </div>
+	                       <div role="tabpanel" class="tab-pane fade" id="tab4" aria-labelledby="payments-tab">
+	                    <!-- <div role="tabpanel" class="tab-pane" id="tab4"> -->
+	                        <div class="profile_setting password_setting">
+		         				
+	         					<h3>Payments</h3>
+	         					<p>Enter your Credit/Debit Card Details</p>
+	         					<div class="row">
+			                      		<div class="col-md-4">
+			                      			<div class="profile_form password_form">
+			                      				<form [formGroup]="cardForm" (ngSubmit)="SaveCard(cardForm.valid,cardForm.value)">
+			                      					<div class="form-group">
+													    <label for="email">Credit Card Number</label>
+													    <input type="text" [attr.maxlength]="20" class="form-control" value="3445 6666 6666 XXXX" formControlName="card_number" >
+													    <img src="../assets/images/card.png">
+													 </div>
+													 <div class="form-group">
+													    <label for="email">CVV</label>
+													    <input type="email" [attr.maxlength]="4" class="form-control" value="309" formControlName="cvv">
+													    <img class="cvv_link" src="../assets/images/cvv_img.png">
+													 </div>
+													  <div class="form-group">
+													    <label for="email">Expiry Date</label>
+													    <input  [owlDateTime]="dt3"  class="form-control" [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" placeholder="Select Date" formControlName="expiry_date">
+    								<owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
+													   <!--  <input type="month" class="form-control" value="MM/YYYY" formControlName="expiry_date"> -->
+													 </div>
+													 <button type="submit" class="blue_btn btn-block">Save</button>
+			                      				</form>
+			                      			</div>
+			                      		</div>
+	                      		</div>
+                      			<div class="card_details">
+		         					<h3>Saved Credit/Debit Cards</h3>
+		         					<p>Your Cards</p>
+		         				</div>
+	                      		<div class="row cardouter">		
+				                      		<div class="col-sm-6" *ngFor="let cards of allcards">
+				                      			<div class="debit_card">
+				                      				<p>{{cards.cardType}}</p>
+				                      				<p *ngIf="!cards.cardholderName"><Span>{{cards.cardholderName}}</Span></p>
+				                      				<p *ngIf="!cards.cardholderName"><Span>{{name}}</Span></p>
+				                      				<p class="account_num">XXXX - XXXX - XXXX - {{cards.last4}}</p>
+				                      				<p><Span>{{cards.expirationMonth}}/{{cards.expirationYear}}</Span></p>
+				                      				<p class="card_num">{{cards.bin}}</p>
+				                      			</div>
+				                      			<a class="delete_link" (click)="DeleteCardModal(cards._id)">Delete Card</a>
+				                      		</div>
+				                      		<!--  -->
+	                      		</div>
+	                    </div>
+	                </div>
+	                   <div role="tabpanel" class="tab-pane fade" id="tab5" aria-labelledby="delete-tab">
+	                 <!-- <div role="tabpanel" class="tab-pane" id="tab5"> -->
+	                        <div class="profile_setting password_setting">
+
+		         				<h3>Delete Account</h3>
+	         					<div class="row">
+			                      		<div class="col-md-4">
+			                      			<div class="delete_setting">
+			                      				<img src="../assets/images/delete_red.png">
+			                      			</div>
+			                      		</div>
+			                      		<div class="col-md-4">
+			                      			<div class="confirmation_setting text-center">
+			                      				<p>Are your sure you want delete your account?</p>
+			                      				<a (click)="DeleteMyAccount()" class="blue_btn">Delete Account</a>
+			                      			</div>
+			                      		</div>
+	                      		</div>
+	                      		<p class="alart_note">If you delete your account, information cannot be restored.</p>
+	                      	
+	                    </div>
+	                </div>
+	                  </div>
+	    </div>
+   </div>
+     </div>
+</section>	
+
+	<div class="modal fade" id="card" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content cards_pop">
+										<div class="modal-body text-center">
+											<h2>Select Card</h2>
+											<form [formGroup]="promoForm" (ngSubmit)="PromoCode(promoForm.valid,promoForm.value)">
+												<div class="promo_outer">
+                                                <!-- <p>Have a Promo Code ? Apply here!!</p> -->
+                                                <input type="text" [attr.maxlength]="10" class="form-control" value="" placeholder="Have a Promo Code ?" formControlName="promo_code" ([ngModel])="promoo">
+                                                 <div *ngIf="promoForm.get('promo_code').hasError('required') && promoForm.get('promo_code').touched">
+                        <div class="error" *ngIf="promoForm.get('promo_code').hasError('required')  && promoForm.get('promo_code').touched ">
+                        Code is required
+                        </div>
+                        </div>
+                                                <button class="promo_btn blue_btn pull-right" type="submit">Apply</button>
+                                                <p *ngIf="show_success" style="color:green;">Promo Applied!!</p>
+                                                <!-- <p style="color:red;">Promo not Applied!!</p> -->
+												</div>
+											</form>
+											<form [formGroup]="payForm" (ngSubmit)="MakePayment(payForm.valid,payForm.value)">
+											
+											 <div class="select_outer">
+							        			<select class="selectpicker form-control" required formControlName="card_id">
+													 <option value=null disabled selected hidden >Select Card</option>
+														<option value="{{card._id}}" 
+									*ngFor="let card of allcards">{{card.cardType}} *******{{card.last4}} </option>
+												</select>
+											</div>
+											  <div *ngIf="payForm.get('card_id').hasError('required') && payForm.get('card_id').touched">
+                        <div class="error" *ngIf="payForm.get('card_id').hasError('required')  && payForm.get('card_id').touched ">
+                        Card is required
+                        </div>
+                        </div>
+											<div class="row">
+												<div class="col-sm-6">
+													<a class="blue_btn cancel_btn" data-dismiss="modal" >Cancel</a>
+												</div>
+												<div class="col-sm-6">
+													<button type="submit" class="blue_btn btn-block">Make Payment</button>
+												</div>
+											</div>
+										</form>
+										</div>
+									</div>
+								</div>
+							</div>
+
+								<div class="modal fade" id="deletecard" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-body pop_btn text-center">
+											<p>Are you sure you want to delete your team?</p>
+											<a class="blue_btn" (click)="DeleteCard()">Yes</a>
+											<a class="blue_btn" data-dismiss="modal" >No</a>
+										</div>
+									</div>
+								</div>
+							</div>
+<style type="text/css">
+.error
+{
+color:red;
+}
+
+</style>

@@ -1,0 +1,53 @@
+<div class="content_area">
+
+    <div class="tables_area">
+        <h2 class="pull-left">Users</h2>
+        <div class="clear"></div>
+    
+        <div class="white_box">
+            <div class="table-responsive">
+                <table id="example" width="100%" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <!-- <th width="5%">#</th> -->
+                            <th width="15%">Name</th>
+                            <th width="30%">Email</th>
+                            <th width="10%">Register Type</th>
+                            <th width="10%">Profile</th>
+                            <th width="10%">Status</th>
+                            <th width="10%">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of users">
+                            <td>{{user.first_name}}</td>
+                            <td>{{user.email}}</td>
+                            <td *ngIf="user.register_type=='O'">Other</td>
+                             <td *ngIf="user.register_type=='F'">Facebook</td>
+                              <td *ngIf="user.register_type=='G'">Google</td>
+                               <td *ngIf="user.register_type=='undefined'">Other</td>
+                            <td *ngIf="user.profile_image">
+                                <img src="{{user.profile_image}}" alt="" style="height:75px;width: 75px;border-radius: 100%;" />
+                            </td>
+                            <td *ngIf="!user.profile_image">
+                                <img src="../../assets/images/logo.png" alt="" style="height:75px;width: 75px;border-radius: 100%;" />
+                            </td>
+                            <td *ngIf="user.status=='A'">Active</td>
+                            <td *ngIf="user.status=='D'">Deleted</td>
+                            <td *ngIf="user.status=='P'">Pending</td>
+                            <td>
+                                <a class="action_btn" [routerLink]="['/userdetail', user._id]" [routerLinkActive]="['router-link-active']">
+                                    <i class="fa fa-eye" aria-hidden="true"></i>
+                                </a>
+                               
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+</div>

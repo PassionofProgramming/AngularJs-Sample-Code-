@@ -1,0 +1,122 @@
+<section class="my_team_details">
+	<div class="container">
+			<h3 class="main_top_heading">Team Details</h3>
+		<div class="row">
+			<div class="col-lg-3 col-md-5">
+				<div class="profile_details_wrap">
+					<div class="profile_details">
+						<img width="78" height="78" src="{{userData?.profile_image}}">
+						<h3>{{userData?.first_name}}</h3>
+						<p>Coach</p>
+					</div>
+					<!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p> -->
+					<h3 class="available_scrimmage">Available for Scrimmage</h3>
+					<label class="switch">
+					   <input type="checkbox" id="my_checkbox" (click)="AvailableScrimmage()" [checked]="avail_val" #myTA >
+					   <span class="slider round"></span>
+					</label>
+					<a  class="blue_btn">Edit Team</a>
+					<a  class="blue_btn delete_btn" (click)="RemoveClick()">Delete this Team</a>
+				</div>	
+				<div class="calender_main">
+				<h3>Set Availability</h3>
+				<div class="calender_customize" id="calendar2" (click)="editDates()"></div>
+				<div class="date_check">
+					<span><p><img src="../assets/images/dot2.png"> Available Date</p></span>
+					<span><p><img src="../assets/images/dot1.png"> Booked Dates</p></span>
+				</div>
+				<a (click)="editDates()" style="color:#0984e3;">Edit Availability</a>
+					<!-- <div id="mdp-demo"></div> -->
+				
+				</div>
+			</div>   
+			<div class="col-lg-9 col-md-7">
+				<div class="team_main_deatils">
+					<div class="full_image">
+						<img src="{{teamData?.cover_image}}">
+					</div>
+					<h2>{{teamData?.team_name}}</h2>
+					<p>{{teamData?.location}}</p>
+				</div>
+				<div class="team_skill_details">
+					<div class="row">
+						<div class="col-sm-3">
+							<div class="sports_name">
+								<h3>Sports</h3>
+								<p>{{teamData?.sport_name.sport}}</p>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="sports_name">
+								<h3>Skill Level</h3>
+								<p>{{teamData?.skill_level.skill}}</p>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="sports_name">
+								<h3>Age Group</h3>
+								<p>{{teamData?.age_group.agegroup}}</p>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="sports_name">
+								<h3>Gender</h3>
+								<p>{{teamData?.gender.gender}}</p>
+								<!-- <p *ngIf="teamData?.gender=='M'">Male</p> -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="sport_location">
+					<h2>Location</h2>
+					<p>{{teamData?.location}}</p>
+					<div class="row">
+						<div class="col-sm-6">
+							<h3>Distance from Current Location</h3>
+							<p>2 miles away</p>
+						</div>
+					</div>
+					<div class="map_location">
+							<div #map style="width:100%;height:400px"></div>
+						<!-- <agm-map [latitude]="lat" [longitude]="lng">
+						  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+						</agm-map> -->
+					</div>
+				</div>
+
+			</div>   
+	    </div>
+   </div>
+</section>	
+
+<div class="modal fade" id="edit_dates" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+      	<!-- <div  id="mdpdemo"></div> -->
+      <div  id="calendar1"></div>
+      <div class="row">
+												<div class="col-sm-6">
+													<button  (click)="EditDates()" class="blue_btn btn-block">Submit</button>
+													
+												</div>
+												<div class="col-sm-6">
+													<a class="blue_btn cancel_btn" data-dismiss="modal" >Cancel</a>
+												</div>
+											</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="request" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-body pop_btn text-center">
+											<p>Are you sure you want to delete your team?</p>
+											<a class="blue_btn" (click)="DeleteTeams()">Yes</a>
+											<a class="blue_btn" data-dismiss="modal" >No</a>
+										</div>
+									</div>
+								</div>
+							</div>

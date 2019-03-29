@@ -1,0 +1,53 @@
+<div class="content_area">
+
+    <div class="tables_area">
+        <h2 class="pull-left">Reported Users</h2>
+        <div class="clear"></div>
+    
+        <div class="white_box">
+            <div class="table-responsive">
+                <table id="example" width="100%" cellspacing="0" cellpadding="0">
+                    <thead>
+                        <tr>
+                            <th width="5%">#</th>
+                            <th width="25%">Reported by</th>
+                            <th width="30%">User Name</th>
+                            <th width="10%">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of users">
+                             <td>{{user.serial_no}}</td>
+                            <td><img src="{{user.user_id.profile_image}}" alt="" style="height:75px;width: 75px;border-radius: 100%;" /> {{user.user_id.first_name}}</td>
+                            <td><img src="{{user.other_user_id.profile_image}}" alt="" style="height:75px;width: 75px;border-radius: 100%;" /> {{user.other_user_id.first_name}}</td>
+                            <td>
+                                <a *ngIf="user.other_user_id.status=='A'" class="action_btn" (click)="SuspendClick(user.other_user_id._id)">
+                                    <a  class="blue_btn yellow_btn text-uppercase" >Suspend</a>
+                                </a>
+                                <a *ngIf="user.other_user_id.status=='SUS'" class="action_btn">
+                                    <a  class="blue_btn yellow_btn text-uppercase" >Suspended</a>
+                                </a>
+                               
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+            <div class="modal fade" id="report" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-body pop_btn text-center">
+                                            <p>Are you sure you want to Report this user?</p>
+                                            <a class="blue_btn" (click)="SuspendUsers()">Yes</a>
+                                            <a class="blue_btn" data-dismiss="modal" >No</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>

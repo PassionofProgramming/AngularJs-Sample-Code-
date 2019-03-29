@@ -1,0 +1,69 @@
+
+<section class="my_team2_page">
+	<div class="container">
+		<h3 class="main_top_heading">My Teams</h3>	
+		<div class="row">
+			<div class="col-lg-4 col-sm-6" *ngFor="let data of teamList">
+				<a >
+					<div class="game_wrap">
+						<div class="img_outer" [routerLink]="['/myteamdetail', data._id]">
+							<img src="{{data.team_image}}">
+						</div>
+						<div class="inner_div">
+							<h3>{{data.team_name}}</h3>
+							<p class="team_location">{{data.location}}</p>  
+							<p  class="gender"><img src="../assets/images/gender.png">{{data.gender.gender}}</p>
+							<p class="gender skill_level"><img src="../assets/images/skill.png">{{data.skill_level.skill}}</p>
+							<p class="age_limit"><span>{{data.sport_name.sport}}</span>({{data.age_group.agegroup}} years)</p>   	
+							<div class="button_sport">
+								<a (click)="RemoveClick(data._id)"><span><i class="fa fa-trash-o" aria-hidden="true"></i>Delete</span></a>
+								<a [routerLink]="['/editteam', data._id]"><span><i class="fa fa-pencil" aria-hidden="true"></i>Edit</span></a>
+								<a (click)="showTeamModal(data._id)"><span><i class="fa fa-calendar" aria-hidden="true"></i>Set Availability</span></a>
+							</div>	
+						</div>
+					</div>
+				</a>
+			</div>
+			<div class="col-md-4 col-sm-6">
+				<a  (click)="newTeam()">
+				<div class="game_wrap add_game">
+					<span><i class="fa fa-plus" aria-hidden="true"></i></span>
+					<h3>Add Team</h3>
+				</div>
+				</a>
+			</div>
+		</div>
+	</div>
+
+</section>
+
+	<div class="modal fade" id="request" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-body pop_btn text-center">
+											<p>Are you sure you want to delete your team?</p>
+											<a class="blue_btn" (click)="DeleteTeams()">Yes</a>
+											<a class="blue_btn" data-dismiss="modal" >No</a>
+										</div>
+									</div>
+								</div>
+							</div>
+<div class="modal fade" id="edit_dates" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+      	<!-- <div  id="mdpdemo"></div> -->
+      <div  id="calendar1"></div>
+      <div class="row">
+												<div class="col-sm-6">
+													<button  class="blue_btn btn-block" (click)="EditDates()">Submit</button>
+													
+												</div>
+												<div class="col-sm-6">
+													<a class="blue_btn cancel_btn" (click)="cancel()" >Cancel</a>
+												</div>
+											</div>
+      </div>
+    </div>
+  </div>
+</div>

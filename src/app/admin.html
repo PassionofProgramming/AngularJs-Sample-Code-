@@ -1,0 +1,174 @@
+<html>
+
+<head>
+    <title>ScrimmmageMatch</title>
+</head>
+
+<body>
+    <h1>Admin Web Services for ScrimmmageMatch</h1>
+    <h2>BaseUrl - http://192.168.2.53:3000/</h2>
+
+
+    ***************************************************************************************
+    <h3>(1) Login (/admin/login)</h3>
+    <form action="/admin/login" method="POST">
+        <table>
+            <tr>
+                <td>Email </td>
+                <td>
+                    <input type="text" name="email">email</td>
+            </tr>
+            <tr>
+                <td>Password </td>
+                <td>
+                    <input type="text" name="password">password</td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit">Submit</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+
+
+    ***************************************************************************************
+    <h3>(2) Get Registered Users (/admin/get_registered_users)</h3>
+    <form action="/admin/get_registered_users" method="GET">
+        <table>
+            <tr>
+                <td>
+                    <button type="submit">Submit</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+
+   ***************************************************************************************
+    <h3>(3) Get Active Users (/admin/get_active_users)</h3>
+    <form action="/admin/get_active_users" method="GET">
+        <table>
+            <tr>
+                <td>
+                    <button type="submit">Submit</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+   ***************************************************************************************
+    <h3>(4) Get User Detail (/admin/get_user_detail)</h3>
+    <form action="/admin/get_user_detail" method="POST">
+        <table>
+        <tr>
+                <td>User Id  </td>
+                <td>
+                    <input type="text" name="user_id">user_id</td>
+            </tr>
+            <tr>
+                <td>
+                    <button type="submit">Submit</button>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+
+
+ ***************************************************************************************
+    <h3>(5) Get upcoming completed scrimmages (/admin/get_upcoming_completed_scrimmages)</h3>
+    <form action="/admin/get_upcoming_completed_scrimmages" method="POST">
+        <table>
+         <tr>
+                <td>user_id </td>
+                <td>
+                    <input type="text" name="user_id">user_id</td>
+            </tr>
+             <tr>
+                <td>
+                    <button type="submit">Submit</button>
+                </td>
+            </tr>
+          
+        </table>
+    </form>
+
+
+
+ ***************************************************************************************
+    <h3>(6) Get Reported Users  (/admin/get_reported_users)</h3>
+    <form action="/admin/get_reported_users" method="GET">
+        <table>
+
+             <tr>
+                <td>
+                    <button type="submit">Submit</button>
+                </td>
+            </tr>
+          
+        </table>
+    </form>
+
+
+
+ ***************************************************************************************
+    <h3>(7) Suspend User  (/admin/suspend_user)</h3>
+    <form action="/admin/suspend_user" method="POST">
+        <table>
+            <tr>
+                <td>user_id </td>
+                <td>
+                    <input type="text" name="user_id">user_id</td>
+            </tr>
+            <tr>
+                <td>status </td>
+                <td>
+                    <input type="text" name="status">status (SUS - suspend)</td>
+            </tr>
+             <tr>
+                <td>
+                    <button type="submit">Submit</button>
+                </td>
+            </tr>
+          
+        </table>
+    </form>
+
+
+ ***************************************************************************************
+    <h3>(8) Get Payment History  (/admin/get_pyament_history)</h3>
+    <form action="/admin/get_pyament_history" method="GET">
+        <table>
+
+             <tr>
+                <td>
+                    <button type="submit">Submit</button>
+                </td>
+            </tr>
+          
+        </table>
+    </form>
+
+ ***************************************************************************************
+    <h3>(9) Get Complaints/ Suggestions  (/admin/get_complaints_suggestions)</h3>
+    <form action="/admin/get_complaints_suggestions" method="GET">
+        <table>
+
+             <tr>
+                <td>
+                    <button type="submit">Submit</button>
+                </td>
+            </tr>
+          
+        </table>
+    </form>
+   
+
+
+
+
+</body>
+
+</html>

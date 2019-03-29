@@ -1,0 +1,33 @@
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
+    <div class="list-group">
+        <a routerLink="/admin/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-dashboard"></i>&nbsp;{{ 'Dashboard'}}
+        </a>
+        <a [routerLink]="['/admin/users']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-user"></i>&nbsp;{{ 'User Management'}}
+        </a>
+         <a [routerLink]="['/admin/datamanage']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-database"></i>&nbsp;{{ 'Data Management'}}
+        </a>
+        <a [routerLink]="['/admin/report']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-flag"></i>&nbsp;{{ 'Reporting Management'}}
+        </a>
+        <a [routerLink]="['/admin/payment']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-money"></i>&nbsp;{{ 'Payment Management'}}
+        </a>
+        <a [routerLink]="['/admin/abuse']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-ban"></i>&nbsp;{{ 'Report/Abuse Management' }}
+        </a>
+        <a [routerLink]="['/admin/membership']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-globe"></i>&nbsp;{{ 'Membership Management' }}
+        </a>
+        <a class="list-group-item">
+            <i class="fa fa-th-list"></i>&nbsp;{{ 'About Us'}}
+        </a>
+        <a [routerLink]="['/admin/privacy']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-address-card-o"></i>&nbsp;{{ 'Terms/Privacy Policy'}}
+        </a>
+      <!--   <div class="header-fields">
+        </div> -->
+    </div>
+</nav>

@@ -1,0 +1,177 @@
+<section class="my_team_details">
+	<div class="container">
+			<h3 class="main_top_heading">Team Details</h3>
+		<div class="row">
+			<div class="col-lg-3 col-md-5">
+				<div class="profile_details_wrap">
+					<div class="profile_details">
+						<img height="78" width="78"src="{{team_data?.user_id.profile_image}}">
+						<h3>{{team_data?.user_id.first_name}}</h3>
+						<p>Coach</p>
+					</div>
+					<!-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p> -->
+					<a  class="blue_btn" (click)="requestModal()">Select Scrimmage</a>
+					<div class="send_link_btn">
+						<a>
+							<img src="../assets/images/msg_shape.png">
+							<p>Send Message</p>
+						</a>
+					</div>
+				</div>	
+				
+			</div>   
+			<div class="col-lg-9 col-md-7">
+				<div class="team_main_deatils">
+					<img src="{{team_data?.cover_image}}">
+					<h2>{{team_data?.team_name}}</h2>
+					<p>{{team_data?.location}} </p>
+				</div>
+				<div class="team_skill_details">
+					<div class="row">
+						<div class="col-sm-3">
+							<div class="sports_name">
+								<h3>Sports</h3>
+								<p>{{team_data?.sport_name.sport}}</p>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="sports_name">
+								<h3>Skill Level</h3>
+								<p>{{team_data?.skill_level.skill}}</p>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="sports_name">
+								<h3>Age Group</h3>
+								<p>{{team_data?.age_group.agegroup}}</p>
+							</div>
+						</div>
+						<div class="col-sm-3">
+							<div class="sports_name">
+								<h3>Gender</h3>
+								<p>{{team_data?.gender.gender}}</p>
+								<!-- <p *ngIf="team_data?.gender=='M'">Male</p> -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="sport_location">
+					<h2>Location</h2>
+					<p>{{team_data?.location}}</p>
+					<div class="row">
+						<!-- <div class="col-sm-6">
+							<p>West Los Angeles is very walkable. The home is in a single family
+							   neighborhood There are grocery stores and restaurants within a 
+						       mile of the house, and Santa Monica pier and beach are nearby. 
+							   Plenty of free street parking within a block of the house.
+							</p>
+						</div> -->
+						<div class="col-sm-6">
+							<h3>Distance from Current Location</h3>
+							<p>2 miles away</p>
+						</div>
+					</div>
+					<div class="map_location other_team_location">
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d773345.5271478073!2d-74.28596804129265!3d40.78663099985961!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sin!4v1525260281378" width="100%" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+					</div>
+					<div class="row other_team_details">
+						<h2>Other Teams<span>by {{team_data?.user_id.first_name}}</span></h2>
+						<div class="col-sm-4" *ngFor="let data of otherteam_data">
+							<div class="game_wrap">
+								<img src="{{data.cover_image}}">
+								<h3>{{data.team_name}}</h3>
+								<p>{{data.location}}</p>  
+								<p class="age_limit"><span>{{data.sport_name.sport}}</span>({{data.age_group.agegroup}}) years</p>   	
+							</div>
+						</div>
+					</div>
+				</div>
+
+			</div>   
+	    </div>
+   </div>
+</section>	
+
+<div class="modal fade" id="request_scrimmage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+      <div class="calender_customize" id="calendar2"></div>
+        <div class="date_check">
+			<span><p><img src="../assets/images/dot2.png"> Available Date</p></span>
+			<span><p><img src="../assets/images/dot1.png"> Booked Dates</p></span>
+		</div>
+	<form [formGroup]="rForm" (ngSubmit)="RequestScrimmage(rForm.value,rForm.valid)">
+     <div class="form-group">
+			<label>Game Date</label>
+			<div class="form-outer">
+				<input [owlDateTime]="dt3"  class="form-control" [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" placeholder="Select Date" formControlName="date_of_match" [min]="min" (change)="selectedDate()">
+    								<owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
+			<!-- <input  class="form-control" placeholder="Enter Date" formControlName="date_of_match" readonly> -->
+				<img src="../assets/images/date.png" alt="" />
+			</div>
+		</div>
+		  <div *ngIf="rForm.get('date_of_match').hasError('required') && rForm.get('date_of_match').touched">
+                        <div class="error" *ngIf="rForm.get('date_of_match').hasError('required')  && rForm.get('date_of_match').touched ">
+                        Game Date is required
+                        </div>
+                        </div>
+		<div class="form-group">
+			<label>Select Time</label>
+			<div class="row">
+				<aside class="col-md-6">
+					<div class="form-outer time_outer">
+						<span>From</span>
+							<input class="form-control" [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4" placeholder="Enter Time" formControlName="from_time">
+   										 <owl-date-time [pickerType]="'timer'" #dt4></owl-date-time>
+						<img src="../assets/images/time.png" alt="" />
+					</div>
+					<div *ngIf="rForm.get('from_time').hasError('required') && rForm.get('from_time').touched">
+                        <div class="error" *ngIf="rForm.get('from_time').hasError('required')  && rForm.get('from_time').touched ">
+                        Time is required
+                        </div>
+                        </div>
+				</aside>
+				
+				<aside class="col-md-6">
+					<div class="form-outer time_outer">
+						<span>To</span>
+						<input class="form-control" [owlDateTimeTrigger]="dt5" [owlDateTime]="dt5" placeholder="Enter Time" formControlName="to_time">
+   										 <owl-date-time [pickerType]="'timer'" #dt5></owl-date-time>
+						<!-- <input type="text" placeholder="Enter Time" class="form-control" /> -->
+						<img src="../assets/images/time.png" alt="" />
+					</div>
+					<div *ngIf="rForm.get('to_time').hasError('required') && rForm.get('to_time').touched">
+                        <div class="error" *ngIf="rForm.get('to_time').hasError('required')  && rForm.get('to_time').touched ">
+                        Time is required
+                        </div>
+                        </div>
+				</aside>
+				
+			</div>
+		</div>
+		<div class="form-group">
+			<label>Select your Team</label>
+			  <div class="select_outer">
+		        			<select class="form-control selectpicker"  required formControlName="team_id">
+								 <option value=null disabled selected hidden >Select Team</option>
+									<option *ngFor="let data of teamList" value="{{data._id}}">{{data.team_name}}</option>
+							</select>
+						</div>
+		</div>
+		<div *ngIf="rForm.get('team_id').hasError('required') && rForm.get('team_id').touched">
+                        <div class="error" *ngIf="rForm.get('team_id').hasError('required')  && rForm.get('team_id').touched ">
+                        Team is required
+                        </div>
+                        </div>
+		<div class="text-center">
+			<button type="submit" class="blue_btn ">Submit</button>
+			<a (click)="cancel()" class="blue_btn ">Cancel</a>
+		</div>
+	</form>
+
+
+      </div>
+    </div>
+  </div>
+</div>

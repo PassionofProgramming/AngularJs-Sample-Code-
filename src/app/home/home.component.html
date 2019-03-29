@@ -1,0 +1,274 @@
+	<div class="header_top home_nav">
+		<div class="container">
+			<div class="logo_area pull-left">
+				<a class="main_logo_top" ><img src="assets/images/logo.png"></a>
+				<a class="mobile_logo"><img src="assets/images/logo2.png"></a>
+			</div>
+			<div class="right_nav pull-right index_right_nav">
+				<a class="text-link" (click)="myTeam()">My Teams</a>
+				<a class="text-link" (click)="myScrimmage()">My Scrimmages</a>
+				<br class="mobile_break" />
+				<a  *ngIf="!id" class="btn_blue sign_in_btn" (click)="signIn()">Sign In</a>
+				<a  *ngIf="!id" (click)="signUp()" class="btn_blue sign_in_btn sign_up_btn">Sign Up</a>
+				  <a ><span style="font-size:30px;cursor:pointer" (click)="openNav()"><img src="../assets/images/menu.png">
+                <span class="circle_blue">{{count}}</span></span></a>
+			</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+ <div class="main_Slider">
+    <div class="slider_menu">
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+            <ul>
+                <li (click)="Home()"><a>Search Scrimmages</a></li>
+                <li class="message_notification"><a (click)="messageList()">Messages
+                <span class="circle_blue">{{count}}</span>
+                </a></li>
+                <li><a (click)="Notification()">Notifications<span class="circle_blue">{{notify_count}}</span></a></li>
+                
+                <li ><a (click)="AccountSettings()" >Account Settings</a>
+                    <ul class="submenu">
+                        <li><a>My Profile</a></li>
+                        <li (click)="NewScrimmages()"><a>New Scrimmages</a></li>
+                        <li (click)="AccountSettings()"><a>Payments</a></li>
+                        <li (click)="AccountSettings()"><a>Membership</a></li>
+                    </ul>
+                </li>
+                <li (click)="onLoggedout()"><a>Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+	<section class="main_banner text-center" id="search">
+		<h1>Search Scrimmage</h1>
+		 <!-- <ngx-loading-bar></ngx-loading-bar> -->
+		<form [formGroup]="rForm" (ngSubmit)="searchResult(rForm.value)">
+		<div class="banner_input">
+			<div class="form-group">
+				 <input id="txtPlaces" type="text" size="50" class="form-control" placeholder="Location">
+			  <img src="assets/images/location_icon.png">
+			</div>
+			<div class="form-group">
+			    <div >
+
+	<input type="text" placeholder="Sport" aria-label="Number" matInput [formControl]="myControl" ([ngModel])="option" [matAutocomplete]="auto" class="form-control">
+    <mat-autocomplete style="background:#fff;" #auto="matAutocomplete" autoActiveFirstOption (optionSelected)="selectBeneficiary($event.option.value)">
+     <mat-option *ngFor="let option of filteredOptions | async" [value]="option.sport" (onSelectionChange)="setExchangeID(option._id)">
+        {{ option.sport }}
+      </mat-option>
+    </mat-autocomplete>
+		        			<!-- <select class="form-control selectpicker" formControlName="sport" required>
+								 <option value=null disabled selected hidden >Sport</option>
+									<option value="{{age._id}}" 
+									*ngFor="let age of sportList">{{age.sport}}</option>
+							</select> -->
+						</div>
+			  <img src="assets/images/sport_icon.png">
+			</div>
+			<div class="form-group">
+			  <div class="select_outer">
+		        			<select class="form-control selectpicker" formControlName="skill_level" required>
+								 <option value=null disabled selected hidden >Skill Level</option>
+									<option value="{{age._id}}" 
+									*ngFor="let age of skillist">{{age.skill}}</option>
+							</select>
+						</div>
+			  <img src="assets/images/skill_icon.png">
+			</div>
+			<div class="form-group">
+			   <div class="select_outer">
+		        			<select class="form-control selectpicker" formControlName="age_group" required>
+								 <option value=null disabled selected hidden >Age Group</option>
+									<option value="{{age._id}}" 
+									*ngFor="let age of agelist">{{age.agegroup}}</option>
+							</select>
+						</div>
+			  <img src="assets/images/age_icon.png">
+			</div>
+			  <button type="submit" class="btn_blue search_btn">Search</button>
+		<!-- 	<a (click)="searchResult()" class="btn_blue search_btn">Search</a> -->
+		</div>
+	</form>
+	</section>
+	<!--slider start-->
+	<section class="Scrimmage_sec">
+		<div class="container">
+			<h2>Nearby Scrimmages</h2>
+			<div class="slider_main">
+				 <owl-carousel
+	     [options]="{items: 4, dots: false, navigation: true}"
+	     [items]="nearlist"
+	     [carouselClasses]="['owl-theme', 'row', 'sliding']">
+	    <div class="item" *ngFor="let data of nearlist">
+		            		<div class="game_wrap">
+					     		<img src="assets/images/game1.png">
+					     		<h3>{{data.team_name}}</h3>
+					     		<p>{{data.team_name}}</p>
+					     	</div>
+		            </div>
+ </owl-carousel>
+				<!-- <div class="owl-carousel owl-theme" id="owltheme">
+		            <div class="item" *ngFor="let data of nearlist">
+		            		<div class="game_wrap">
+					     		<img src="assets/images/game1.png">
+					     		<h3>{{data.team_name}}</h3>
+					     		<p>{{data.team_name}}</p>
+					     	</div>
+		            </div> -->
+		         <!--     <div class="item">
+		            		<div class="game_wrap">
+					     		<img src="assets/images/game2.png">
+					     		<h3>11 Goals</h3>
+					     		<p>Florida</p>
+					     	</div>
+		            </div>
+		             <div class="item">
+		            		<div class="game_wrap">
+					     		<img src="assets/images/game3.png">
+					     		<h3>Warrior</h3>
+					     		<p>Florida</p>
+					     	</div>
+		            </div>
+		             <div class="item">
+		            		<div class="game_wrap">
+					     		<img src="assets/images/game4.png">
+					     		<h3>Unbroken</h3>
+					     		<p>Florida</p>
+					     	</div>
+		            </div>
+		            <div class="item">
+		            		<div class="game_wrap">
+					     		<img src="assets/images/game1.png">
+					     		<h3>Champions</h3>
+					     		<p>Florida</p>
+					     	</div>
+		            </div>
+		            <div class="item">
+		            		<div class="game_wrap">
+					     		<img src="assets/images/game2.png">
+					     		<h3>11 Goals</h3>
+					     		<p>Florida</p>
+					     	</div>
+		            </div> -->
+	       		<!-- </div> -->
+        	</div>
+		</div>
+	</section>
+	<!--slider end-->
+	<!--how it works start-->
+	<section class="how_works text-center">
+		<div class="container">
+			<h2>How it works</h2>
+			<div class="row">
+				<div class="col-sm-4">
+					<div class="work_wrap">
+						<a (click)="createTeam()">
+							<img src="assets/images/work1.png">
+							<h3>Create Your Team</h3>
+						</a>	
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="work_wrap">
+						<a>
+							<img src="assets/images/work2.png">
+							<h3>Search & Request Scrimmage</h3>
+							<img class="arrow" src="assets/images/arrow_right.png">
+						</a>	
+					</div>
+				</div>
+				<div class="col-sm-4">
+					<div class="work_wrap">
+						<a (click)="newScrimmages()">
+							<img src="assets/images/work3.png">
+							<h3>Accept Pending Scrimmage</h3>
+							<img class="arrow" src="assets/images/arrow_right.png">
+						</a>	
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<footer class="main_footer">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-5">
+					<h2>Explore SCRIMMAGEMATCH</h2>
+					<p>SCRIMMAGEMATCH is the official home for matching like for like teams for any sport at any age for scrimmages.  Whether you lead a recreation team that you want to develop through game time or a competitive team that you are looking for more intense competition, SCRIMMAGEMATCH is for you!    For those competing in individual sports, register as an individual and receive the same benefits.  Let's Play!!!</p>
+					<div class="social_icon">  
+						<a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a> 
+						<a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a> 
+						<a href="#"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+						<a href="#"><i class="fa fa-google-plus-official" aria-hidden="true"></i></a> 
+					</div>
+				</div>
+				<div class="col-sm-3">
+					<ul class="footer_list">
+						<li><a href="">About Us</a></li>
+						<li><a href="mailto:scrimmagematchfeedback@gmail.com">Feedback</a></li>
+						<li><a href="">How it work’s</a></li>
+					</ul>
+				</div>
+				<div class="col-sm-4">
+					<h2>Contact Us</h2>
+					<ul class="contact_list">
+						<li><i class="fa fa-map-pin" aria-hidden="true"></i> 11323 E Minton St, Mesa, AZ 85207</li>
+						<li><i class="fa fa-envelope-open" aria-hidden="true"></i> scrimmagematch@gmail.com</li>
+					</ul>
+				</div>
+			</div>
+			<div class="terms">
+				<p>Use of this website constitutes acceptance of the <span><a target="_blank" href="{{termsdata}}">Terms and Conditions</a></span> and <span><a target="_blank" href="{{privacydata}}">Privacy Policy</a></span>.</p>
+			</div>
+		</div>
+		<div class="copy_right">
+			<div class="container">
+				<p>©2012-Present scrimmagematch.com, Inc. All rights reserved.</p>
+			</div>
+		</div>
+	</footer>
+	<!--how it works end-->
+
+<!-- Modal -->
+<div class="modal fade signup_modal" id="signup_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+      	<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      	<h1>Get 90 days of free trail</h1>
+        <p>Only for few first customers. Sign up soon to get benefits.</p>
+      	<a href="sign_up.html" class="blue_btn">Sign Up Now</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+         $(document).ready(function() {
+           $('.owl-carousel').owlCarousel({
+           
+			items:4,
+			loop:true,
+			nav: true,
+			dots:false,
+			autoplay:false,
+			navText:['<img src="assets/images/prev.png">', '<img src=""assets/images/next.png">'],
+			responsiveClass:true,
+		    responsive:{
+		        0:{
+		            items:1
+		        },
+		        600:{
+		            items:3
+		        },
+		        1000:{
+		            items:4
+		        }
+		             }
+		           })
+
+		          
+		         })
+      </script>
+     

@@ -1,0 +1,41 @@
+    <div class="header_top">
+        <div class="container">
+            <div class="logo_area pull-left" (click)="Home()">
+                <a class="main_logo_top"><img src="../assets/images/logo.png"></a>
+                <a class="mobile_logo"><img src="../assets/images/logo2.png"></a>
+            </div>
+            <div class="right_nav pull-right">
+                <a (click)="myTeams()">My Teams</a>
+                <a (click)="myScrimmages()">My Scrimmages</a>
+                <a ><span style="font-size:30px;cursor:pointer" (click)="openNav()"><img src="../assets/images/menu.png">
+                <span class="circle_blue">{{final_count}}</span></span></a>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+
+    <div class="main_Slider">
+    <div class="slider_menu">
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" (click)="closeNav()">&times;</a>
+            <ul>
+                <li (click)="Home()"><a>Home</a></li>
+                <li class="message_notification"><a (click)="messageList()">Messages
+                <span class="circle_blue">{{count}}</span>
+                </a></li>
+                <li><a (click)="Notification()">Notifications
+                  <span class="circle_blue">{{notify_count}}</span></a></li>
+                
+                <li ><a (click)="AccountSettings()" >Account Settings</a>
+                   <!--  <ul class="submenu">
+                        <li><a>My Profile</a></li>
+                        <li (click)="NewScrimmages()"><a>New Scrimmages</a></li>
+                        <li (click)="AccountSettings()"><a>Payments</a></li>
+                        <li (click)="AccountSettings()"><a>Membership</a></li>
+                    </ul> -->
+                </li>
+                <li (click)="onLoggedout()"><a>Logout</a></li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,161 @@
+<section class="create_team_sec">
+	<div class="container">
+		<div class="row">
+
+		<ngx-spinner
+		bdColor = "rgba(51, 51, 51, 0.8)"
+		size = "medium"
+		color = "#fff"
+		type = "ball-climbing-dot"
+		></ngx-spinner>
+		<div class="col-lg-4 col-md-6 order-md-2">
+			<div class="create_wrap">
+				<h3>File Upload</h3>
+					<div class="upload text-center upload_post" id="holder"  ng2FileDrop (ng2FileDropHoverStart)="dragFileOverStart()" (ng2FileDropHoverEnd)="dragFileOverEnd()" (ng2FileDropFileAccepted)="dragFileAccepted($event)" (ng2FileDropFileRejected)="dragFileRejected($event)">
+						<div class="drag">
+			                 <div class="upload-drop-zone"  >
+			                 	<div class="up_load">
+			                           <img src="../assets/images/upload.png">
+			                     </div>
+			                     <div><p>Drag files to Upload <br> Add your Team Pictures</p></div>
+								       
+			                        </div>
+				                 </div>
+			        </div>
+			          <form action="" method="post" enctype="multipart/form-data" id="js-upload-form">
+			                         <label class="btn-bs-file btn btn-lg btn-primary brow">
+				                          Upload
+				                         <input type="file" #fileupload (change)="onFileChange($event)" id="event_cover">
+			                         </label>
+			          </form> 
+			</div>
+			<div class="uploaded_doc">
+				<p *ngIf="imggg" class="alert alert-info p-2">Click on the picture to set as cover image</p>
+				<div class="uploded_file" *ngFor="let images of img_array ; let i=index">
+					<ul>
+						<li>
+							<img src="../assets/images/image_icon.png" >
+							<p class="file_name">{{images.name}}</p>
+							<p (click)="deleteImg($index,images)"><i class="fa fa-trash" aria-hidden="true"></i> Delete</p>
+						</li>
+					</ul>
+					<div class="select_upload_img">
+						<img src="{{images.img}}" (click)="checking(i,images)" >
+						<p >Set as cover Picture</p>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+		<div class="col-lg-4 offset-lg-2 col-md-6">
+			<div class="create_wrap create_teamboxarea">
+				<h3>Create Team</h3>
+				<div class="form_wrap">
+				 <form  [formGroup]="rForm" (ngSubmit)="CreateTeam(rForm.valid)">
+					  <div class="form-group">
+					    <label for="email">Select Sport</label>
+					     <div class="select_outer">
+		        			<select class="selectpicker" formControlName="sport_name" required>
+								 <option value=null disabled selected hidden >Select Sport</option>
+									<option value="{{age._id}}" 
+									*ngFor="let age of sportList">{{age.sport}}</option>
+							</select>
+						</div>
+					    <!--  <input type="text" class="form-control" placeholder="Enter Sport" formControlName="sport_name" [attr.maxlength]="50" required> -->
+					  </div>
+					  <div *ngIf="rForm.get('sport_name').hasError('required') && rForm.get('sport_name').touched">
+                        <div class="error" *ngIf="rForm.get('sport_name').hasError('required')  && rForm.get('sport_name').touched ">
+                        Sport is required
+                        </div>
+                        </div>
+
+					  <div class="form-group">
+					    <label for="pwd">Select Team Name</label>
+					    <input type="text" class="form-control" placeholder="Enter Team Name" formControlName="team_name" [attr.maxlength]="50" required>
+					  </div>
+					  <div *ngIf="rForm.get('team_name').hasError('required') && rForm.get('team_name').touched">
+                        <div class="error" *ngIf="rForm.get('team_name').hasError('required')  && rForm.get('team_name').touched ">
+                        Team Name is required
+                        </div>
+                        </div>
+
+					   <div class="form-group">
+					    <label for="email">Age Group</label>
+					    <div class="select_outer">
+		        			<select class="selectpicker" formControlName="age_group" [attr.maxlength]="50" required>
+								 <option value=null disabled selected hidden >Select Age Group</option>
+									<option value="{{age._id}}" 
+									*ngFor="let age of agelist">{{age.agegroup}}</option>
+							</select>
+						</div>
+					  </div>
+					  <div *ngIf="rForm.get('age_group').hasError('required') && rForm.get('age_group').touched">
+                        <div class="error" *ngIf="rForm.get('age_group').hasError('required')  && rForm.get('age_group').touched ">
+                        Age Group is required
+                        </div>
+                        </div>
+
+					   <div class="form-group">
+					    <label for="email">Skill Level</label>
+					    <div class="select_outer">
+		        			<select class="selectpicker" formControlName="skill_level" [attr.maxlength]="50" required>
+								<option value=null disabled selected hidden >Select Skill Level</option>
+											<option value="{{skill._id}}" 
+											*ngFor="let skill of skillist">{{skill.skill}}</option>
+							</select>
+						</div>
+					  </div>
+					   <div *ngIf="rForm.get('skill_level').hasError('required') && rForm.get('skill_level').touched">
+                        <div class="error" *ngIf="rForm.get('skill_level').hasError('required')  && rForm.get('skill_level').touched ">
+                        Skill Level is required
+                        </div>
+                        </div>
+
+					  <div class="form-group">
+					    <label for="pwd">Location</label>
+					     <input id="txtPlaces" type="text" size="50" class="form-control" placeholder="Enter Location" formControlName="location">
+					   	 <!-- <input type="text" class="form-control" placeholder="Enter Location" autocorrect="off" autocapitalize="off" spellcheck="off"  #search formControlName="location"> -->
+					  </div>
+					  <div *ngIf="rForm.get('location').hasError('required') && rForm.get('location').touched">
+                        <div class="error" *ngIf="rForm.get('location').hasError('required')  && rForm.get('location').touched ">
+                        Location is required
+                        </div>
+                        </div>
+
+					  <div class="form-group">
+					    <label for="email">Gender</label>
+					    <div class="select_outer">
+					    	<select class="selectpicker" formControlName="gender" [attr.maxlength]="50" required>
+								 <option value=null disabled selected hidden >Select Gender</option>
+									<option value="{{age._id}}" 
+									*ngFor="let age of gender">{{age.gender}}</option>
+							</select>
+		        			<!-- <select class="selectpicker" formControlName="gender" [attr.maxlength]="50" required>
+		        				<option value=null disabled selected hidden >Select Gender</option>
+								 <option value="M">Male</option>
+								 <option value="F">Female</option>
+							</select> -->
+						</div>
+					  </div>
+					   <div *ngIf="rForm.get('gender').hasError('required') && rForm.get('gender').touched">
+                        <div class="error" *ngIf="rForm.get('gender').hasError('required')  && rForm.get('gender').touched ">
+                        Gender is required
+                        </div>
+                        </div>
+					   <button type="submit" class="blue_btn  btn-block">Submit</button>
+				</form> 
+			</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</section>
+<style type="text/css">
+.error
+{
+color:red;
+}
+
+</style>

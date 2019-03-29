@@ -1,0 +1,287 @@
+<section class="Search_result_sec">
+	<!--container start -->
+	<div class="container">
+		<div class="row">
+		<!--col-sm-4 start -->
+		<div class="col-sm-4">
+
+			<!-- yourlocation start -->
+			<div class="your_location_wraper">
+				<h3>Cape Cod Massachusetts</h3>
+				<p><a>your Current Location</a></p>
+				<div class="your_location">
+					<div #gmap style="width:100%;height:400px"></div>
+				<!-- 	<agm-map [latitude]="lat" [longitude]="lng">
+						  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+						</agm-map> -->
+				</div>
+			</div>
+				<!-- yourlocation end -->
+				
+             <!-- accordian_main start -->
+             <form [formGroup]="eForm">
+			<div class="accordian_main">
+					<!-- panel-group start -->
+				<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+						<!-- panel-default start -->
+					<div class="panel panel-default">
+				      <div class="panel-heading" role="tab" id="headingOne">
+				        <h2 class="panel-title accordion_tab">
+				        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+				          Team Name
+				        </a>
+				      </h2>
+				      </div>
+				      <div id="collapseOne" class="panel-collapse collapse active show in" role="tabpanel" aria-labelledby="headingOne">
+				        <div class="panel-body">
+				        	<input type="text" [(ngModel)]="term" formControlName="team_name" class="form-control" (click)="teamName(term)" placeholder="Search by team name">
+				        	<!-- <input type="text" class="form-control" placeholder="Search by team name" /> -->
+				        </div>
+				      </div>
+					</div>
+							<!-- panel-default end -->
+								<!-- panel-default start -->
+				    <div class="panel panel-default">
+				      <div class="panel-heading" role="tab" id="headingTwo">
+				        <h2 class="panel-title accordion_tab">
+				        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+				         Gender
+				        </a>
+				      </h2>
+				      </div>
+				      <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+				        <div class="panel-body">
+				         	<div class="select_outer">
+				         		<!-- <select class="form-control selectpicker" formControlName="skill_level" required>
+								 <option value=null disabled selected hidden >Skill Level</option>
+									<option value="{{age._id}}" 
+									*ngFor="let age of skillist">{{age.skill}}</option>
+							</select> -->
+			        			<select class="selectpicker" [(ngModel)]="term1" formControlName="gender" (change)='changeShape(term1)'>
+			        				 <option value=null disabled selected hidden >Select Gender</option>
+									 <option value="{{age.gender}}" 
+									*ngFor="let age of genderlist">{{age.gender}}</option>
+									 <!-- <option value="Female">Female</option> -->
+								</select>
+							</div>
+				        </div>
+				      </div>
+					</div>
+							<!-- panel-default end -->
+								<!-- panel-default start -->
+				    <div class="panel panel-default">
+				      <div class="panel-heading" role="tab" id="headingThree">
+				        <h2 class="panel-title accordion_tab">
+				        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+				          Max Distance
+				        </a>
+				      </h2>
+				      </div>
+				      <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+				        <div class="panel-body">
+				        	<div class="select_outer">
+
+			        			<select class="selectpicker">
+			        					 <option value=null disabled selected hidden >Select Distance</option>
+									 <option>0-20 miles</option>
+									 <option>21-50 miles</option>
+									  <option>51-100 miles</option>
+									   <option>101-300 miles</option>
+								</select>
+							</div>
+				          
+				        </div>
+				      </div>
+					</div>
+							<!-- panel-default end -->
+				  </div>
+						  	<!-- panel-group end -->
+			</div>
+		</form>
+						<!-- accordian_main end -->
+		</div>
+						<!--col-sm-4 end -->
+
+						<!--col-sm-8 start -->
+		<div class="col-sm-8">
+
+				<!--result_list start -->
+			<div class="result_list">
+				<h3 *ngIf="!search" class="main_top_heading">Search Results ({{teamcount}})</h3>
+				<h3 *ngIf="search" class="main_top_heading">Search Results</h3>
+		
+
+					<!--row start -->
+				<div class="row" *ngFor="let data of teams |filter:term">
+					<!--col-md-6 start -->
+					<div class="col-md-6">
+					<!--sports_img start -->
+						<div class="sports_img sport_img_outer">
+							<a [routerLink]="['/otherteam', data._id]">
+								<img src="{{data.cover_image}}">
+							</a>
+						</div>
+						<!--sports_img end -->
+					</div>
+					<!--col-md-6 end -->
+
+					<!--col-md-6 start -->
+					<div class="col-md-6">
+						<!--sport_details start -->
+						<div class="sport_details">
+							<a>
+								<h3>{{data.team_name}}</h3>
+								<p>{{data.location}}(2 miles away)</p>
+								<p class="sport_name">{{data.sport_name.sport}}</p>
+							</a>	
+						</div>
+						<!--sport_details end -->
+						<!--row start -->
+						<div class="row">
+							<!--col-sm-6 start -->
+							<div class="col-sm-6">
+								<!--send_link_btn start -->
+								<div class="send_link_btn">
+									<a [routerLink]="['/message', data.user_id,data.connection_id]">
+										<img src="../assets/images/msg_shape.png">
+										<p>Send Message</p>
+									</a>
+								</div>
+								<!--send_link_btn end -->
+							</div>
+							<!--col-sm-6 end -->
+
+							<!--col-sm-6 start -->
+							<div class="col-sm-6">
+								<!--send_request_btn start -->
+								<div class="send_request_btn" >
+									<a  class="blue_btn" (click)="requestModal(data._id,data.user_id)" class="blue_btn">Request Scrimmage</a>
+								</div>
+									<div class="send_request_btn" *ngIf="data.requestSent==true">
+									<a  class="blue_btn" class="blue_btn">Request Sent</a>
+								</div>
+								<!--send_request_btn end -->
+							</div>
+							<!--col-sm-6 end -->
+						</div>
+						<!--row end -->
+					</div>
+					<!--sport_details end -->
+				</div>
+				<a  class="load_more_btn" (click)="loadMore()" *ngIf="pagination==true" style="color:#0984e3">Load More</a>
+					<!--col-md-6 end -->
+				<!-- <a  class="load_more_btn">Load More</a> -->
+			</div>
+			</div>
+			<!--result_list end -->
+		</div>
+			<!--col-sm-8 end -->
+	</div>
+		<!--container end -->
+</section>
+
+<div class="modal fade" id="request_scrimmage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-body">
+      <div class="calender_customize" id="calendar2"></div>
+        <div class="date_check">
+			<span><p><img src="../assets/images/dot2.png"> Available Date</p></span>
+			<span><p><img src="../assets/images/dot1.png"> Booked Dates</p></span>
+		</div>
+	<form [formGroup]="rForm" (ngSubmit)="RequestScrimmage(rForm.value,rForm.valid)">
+     <div class="form-group">
+			<label>Game Date</label>
+			<div class="form-outer">
+			<input [owlDateTime]="dt3"  class="form-control" [owlDateTimeTrigger]="dt3" [owlDateTime]="dt3" placeholder="Select Date" formControlName="date_of_match"  (change)="selectedDate()">
+    								<owl-date-time [pickerType]="'calendar'" #dt3></owl-date-time>
+				<img src="../assets/images/date.png" alt="" />
+			</div>
+		</div>
+		  <div *ngIf="rForm.get('date_of_match').hasError('required') && rForm.get('date_of_match').touched">
+                        <div class="error" *ngIf="rForm.get('date_of_match').hasError('required')  && rForm.get('date_of_match').touched ">
+                        Game Date is required
+                        </div>
+                        </div>
+		<div class="form-group">
+			<label>Select Time</label>
+			<div class="row">
+				<aside class="col-md-6">
+					<div class="form-outer time_outer">
+						<span>From</span>
+						 <mat-form-field>
+					    <input matInput readonly class="form-control" name="from_time"  [matTimepicker]="picker" id="picker">
+					    <mat-timepicker-toggle matSuffix [for]="picker"></mat-timepicker-toggle>
+					    </mat-form-field>
+					    <mat-timepicker #picker color="primary"   ngDefaultControl (selectedChanged)="onDate($event)"></mat-timepicker>
+					    
+                      <!--   <div *ngIf="rForm.get('from_time').hasError('required') && rForm.get('from_time').touched">
+                        <div class="error" *ngIf="rForm.get('from_time').hasError('required')  && rForm.get('from_time').touched ">
+                        Time is required
+                        </div>
+                        </div> -->
+							<!-- <input class="form-control" [owlDateTimeTrigger]="dt4" [owlDateTime]="dt4" placeholder="Enter Time" formControlName="from_time">
+   										 <owl-date-time [pickerType]="'timer'" [stepMinute]="'30'" #dt4></owl-date-time> -->
+						<!-- <img src="../assets/images/time.png" alt="" /> -->
+					</div>
+					<div *ngIf="rForm.get('from_time').hasError('required') && rForm.get('from_time').touched">
+                        <div class="error" *ngIf="rForm.get('from_time').hasError('required')  && rForm.get('from_time').touched ">
+                        Time is required
+                        </div>
+                        </div>
+				</aside>
+				
+				<aside class="col-md-6">
+					<div class="form-outer time_outer">
+						<span>To</span>
+						<mat-form-field>
+					    <input matInput class="form-control" name="to_time" [matTimepicker]="picker1"   id = "pickerr1">
+					    <mat-timepicker-toggle matSuffix [for]="picker1"></mat-timepicker-toggle>
+					    <mat-timepicker #picker1 color="primary" ></mat-timepicker>
+					    </mat-form-field>
+						<!-- <input class="form-control" [owlDateTimeTrigger]="dt5" [owlDateTime]="dt5"  placeholder="Enter Time" formControlName="to_time" >
+   										 <owl-date-time [pickerType]="'timer'" [stepMinute]="'10'" #dt5 disabled="false"></owl-date-time>
+						<img src="../assets/images/time.png" alt="" /> -->
+					</div>
+					<div *ngIf="rForm.get('to_time').hasError('required') && rForm.get('to_time').touched">
+                        <div class="error" *ngIf="rForm.get('to_time').hasError('required')  && rForm.get('to_time').touched ">
+                        Time is required
+                        </div>
+                        </div>
+				</aside>
+				
+			</div>
+		</div>
+		<div class="form-group">
+			<label>Select your Team</label>
+			  <div class="select_outer">
+		        			<select class="form-control selectpicker"  required formControlName="team_id">
+								 <option value=null disabled selected hidden >Select Team</option>
+									<option *ngFor="let data of teamList" value="{{data._id}}">{{data.team_name}}</option>
+							</select>
+						</div>
+		</div>
+		<div *ngIf="rForm.get('team_id').hasError('required') && rForm.get('team_id').touched">
+                        <div class="error" *ngIf="rForm.get('team_id').hasError('required')  && rForm.get('team_id').touched ">
+                        Team is required
+                        </div>
+                        </div>
+		<div class="text-center">
+			<button type="submit" class="blue_btn ">Submit</button>
+			<a (click)="cancel()" class="blue_btn ">Cancel</a>
+		</div>
+	</form>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<style type="text/css">
+.error
+{
+color:red;
+}
+
+</style>

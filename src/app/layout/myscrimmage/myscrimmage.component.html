@@ -1,0 +1,249 @@
+<section class="setting_tab my_scrimmage_page">
+	<div class="container">
+		<div class="row" role="tabpanel">
+	            <div class="col-md-3 col-sm-5">
+	                <ul class="nav nav-pills brand-pills nav-stacked scrimmage_pill" role="tablist">
+
+	                	<li class="nav-item">
+						    <a class="nav-link active" id="upcoming-tab" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="true"><span class="icons_sprite upcoming_scrimmages_icon"></span>Upcoming Scrimmages</a>
+						</li>
+						<li class="nav-item">
+						    <a class="nav-link" id="pending-tab" data-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false"><span class="icons_sprite pending_scrimmages_icon"></span>Pending Scrimmages</a>
+						</li>
+						<li class="nav-item">
+						    <a class="nav-link" id="completed-tab" data-toggle="tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="false"><span class="icons_sprite completed_scrimmages_icon"></span>Completed Scrimmages</a>
+						</li>
+
+						<li class="nav-item">
+						    <a class="nav-link" id="requested-tab" data-toggle="tab" href="#tab4" role="tab" aria-controls="tab4" aria-selected="false"><span class="icons_sprite requested_scrimmages_icon"></span>Requested Scrimmages</a>
+						</li>
+
+
+
+	                    
+	                </ul>
+	            </div>
+	            <div class="col-md-9 col-sm-7">
+	                <div class="tab-content">
+	                	  <div role="tabpanel" class="tab-pane fade show active" id="tab1" aria-labelledby="upcoming-tab">
+	                	  <h3>Upcoming Scrimmages</h3>
+	                    	<div class="main_details" *ngFor="let data of upcomingData">
+		                    	<div class="scrimmage_img">
+				                       <img style="height:180px;width:180px;" src="{{data.other_team_id.team_image}}">
+				                </div>
+		                    	<div class="my_scrimmage_details">
+			               			  	<div class="sport_details">
+											<h3>{{data.other_team_id.team_name}}</h3>
+											<p>{{data.other_team_id.location}} (2 miles away)</p>
+											<p class="age_limit"><span>{{data.other_team_id.sport_name.sport}}</span>({{data.other_team_id.age_group.agegroup}} years)</p>
+											<p class="age_limit"><span>Team:</span>{{data.team_id.team_name}}</p>
+											<div class="time_details">
+												<div class="send_link_btn">
+													<img src="../assets/images/gender.png">
+													<p *ngIf="data.other_team_id.gender=='M'">Male</p>
+													<p *ngIf="data.other_team_id.gender=='F'">Female</p>
+												</div>
+												<div class="send_link_btn">
+													<img src="../assets/images/skill.png">
+													<p>{{data.other_team_id.skill_level.skill}}</p>
+												</div>
+												<div class="clearfix"></div>
+											</div>
+										</div>
+										<div class="time_details">
+											<div class="send_link_btn">
+												<img src="../assets/images/date.png">
+												<p>{{data.date_of_match}}</p>
+											</div>
+											<div class="send_link_btn">
+												<img src="../assets/images/time.png">
+												<p>{{data.from_time}} to {{data.to_time}}</p>
+											</div>
+										</div>
+		                    	</div>
+		               			 <div class="clearfix"></div>
+	               			 </div>
+
+	                    </div>
+	                  
+	                     <div role="tabpanel" class="tab-pane fade" id="tab2" aria-labelledby="pending-tab">
+	                      <h3>Pending Scrimmages</h3>
+	                    	<div class="main_details" *ngFor="let data of pendingData">
+		                    	<div class="scrimmage_img">
+				                      <img style="height:180px;width:180px;" src="{{data.team_id.team_image}}">
+				                </div>
+		                    	<div class="my_scrimmage_details">
+			               			  	<div class="sport_details">
+											<h3>{{data.team_id.team_name}}</h3>
+											<p>{{data.team_id.location}} (2 miles away)</p>
+											<p class="age_limit"><span>{{data.team_id.sport_name.sport}}</span>({{data.team_id.age_group.agegroup}} years)</p>
+											<p class="age_limit"><span>Team:</span>{{data.team_id.team_name}}</p>
+											<div class="time_details">
+												<div class="send_link_btn">
+													<img src="../assets/images/gender.png">
+													<p *ngIf="data.team_id.gender=='M'">Male</p>
+													<p *ngIf="data.team_id.gender=='F'">Female</p>
+												</div>
+												<div class="send_link_btn">
+													<img src="../assets/images/skill.png">
+													<p>{{data.team_id.skill_level.skill}}</p>
+												</div>
+												<div class="clearfix"></div>
+											</div>
+										</div>
+										<div class="time_details">
+											<div class="send_link_btn">
+												<img src="../assets/images/date.png">
+												<p>{{data.date_of_match}}</p>
+											</div>
+											<div class="send_link_btn">
+												<img src="../assets/images/time.png">
+												<p>{{data.from_time}} to {{data.to_time}}</p>
+											</div>
+										</div>
+		                    	</div>
+		                    	<div class="accept_btn">
+		               			  	<div class="time_details">
+										<div class="send_link_btn">
+											<a (click)="acceptRejectScrimmages(data._id,'A')">
+												<img src="../assets/images/accept.png">
+												<p >Accept</p>
+											</a>
+										</div>
+										<div class="send_link_btn">
+											<a (click)="acceptRejectScrimmages(data._id,'C')">
+												<img src="../assets/images/reject.png">
+												<p >Reject</p>
+											</a>
+										</div>
+									</div>
+		               			 </div>
+		               			 <div class="clearfix"></div>
+	               			 </div>
+
+	                    </div>
+	                  
+	                     <div role="tabpanel" class="tab-pane fade" id="tab3" aria-labelledby="completed-tab">
+	                      <h3>Completed Scrimmages</h3>
+	               			<div class="main_details" *ngFor="let data of completedData">
+		                    	<div class="scrimmage_img">
+				                       <img style="height:180px;width:180px;" src="{{data.other_team_id.team_image}}">
+				                </div>
+		                    	<div class="my_scrimmage_details">
+			               			  	<div class="sport_details">
+											<h3>{{data.other_team_id.team_name}}</h3>
+											<p>{{data.other_team_id.location}} (2 miles away)</p>
+											<p class="age_limit"><span>{{data.other_team_id.sport_name.sport}}</span>({{data.other_team_id.age_group.agegroup}} years)</p>
+											<p class="age_limit"><span>Team:</span>{{data.team_id.team_name}}</p>
+											<div class="time_details">
+												<div class="send_link_btn">
+													<img src="../assets/images/gender.png">
+													<p *ngIf="data.other_team_id.gender=='M'">Male</p>
+													<p *ngIf="data.other_team_id.gender=='F'">Female</p>
+												</div>
+												<div class="send_link_btn">
+													<img src="../assets/images/skill.png">
+													<p>{{data.other_team_id.skill_level.skill}}</p>
+												</div>
+												<div class="clearfix"></div>
+											</div>
+										</div>
+										<div class="time_details">
+											<div class="send_link_btn">
+												<img src="../assets/images/date.png">
+												<p>{{data.date_of_match}}</p>
+											</div>
+											<div class="send_link_btn">
+												<img src="../assets/images/time.png">
+												<p>{{data.from_time}} to {{data.to_time}}</p>
+											</div>
+										</div>
+		                    	</div>
+										 <div class="clearfix"></div>
+										<div class="Completed_link">
+											<div class="send_link_btn star_rating">
+											<img src="../assets/images/completed.png"><p>Completed</p>
+												<button (click)="showRating(data._id,data.other_user_id,data.other_team_id._id)">Rate Now</button>
+											</div>
+											</div>
+		                    	</div>
+
+
+	               			 </div>
+
+	               		 <div role="tabpanel" class="tab-pane fade" id="tab4" aria-labelledby="requested-tab">
+	                      <h3>Requested Scrimmages</h3>
+	               			<div class="main_details" *ngFor="let data of requetedData">
+		                    	<div class="scrimmage_img">
+				                       <img style="height:180px;width:180px;" src="{{data.other_team_id.team_image}}">
+				                </div>
+		                    	<div class="my_scrimmage_details">
+			               			  	<div class="sport_details">
+											<h3>{{data.other_team_id.team_name}}</h3>
+											<p>{{data.other_team_id.location}} (2 miles away)</p>
+											<p class="age_limit"><span>{{data.other_team_id.sport_name.sport}}</span>({{data.other_team_id.age_group.agegroup}} years)</p>
+											<p class="age_limit"><span>Team:</span>{{data.team_id.team_name}}</p>
+											<div class="time_details">
+												<div class="send_link_btn">
+													<img src="../assets/images/gender.png">
+													<p *ngIf="data.other_team_id.gender=='M'">Male</p>
+													<p *ngIf="data.other_team_id.gender=='F'">Female</p>
+												</div>
+												<div class="send_link_btn">
+													<img src="../assets/images/skill.png">
+													<p>{{data.other_team_id.skill_level.skill}}</p>
+												</div>
+												<div class="clearfix"></div>
+											</div>
+										</div>
+										<div class="time_details">
+											<div class="send_link_btn">
+												<img src="../assets/images/date.png">
+												<p>{{data.date_of_match}}</p>
+											</div>
+											<div class="send_link_btn">
+												<img src="../assets/images/time.png">
+												<p>{{data.from_time}} to {{data.to_time}}</p>
+											</div>
+										</div>
+		                    	</div>
+		                    	</div>
+
+
+	               			 </div>
+		               			
+	               			 </div>
+	               			 
+	              </div>      
+	                 
+	    </div>
+   </div>
+</section>
+
+<!-- /**************************************Rate Now*****************************************/ -->
+
+		<div class="modal fade" id="ratenow" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-body rating_pop text-center">
+											<h2>Rate Now</h2>
+								<form  [formGroup]="rForm" (ngSubmit)="AddRating(rForm.valid,rForm.value)">
+								<neutron-rating [rating]='5' [starColour]="'#FDD835'" [starSize]="5" (ratingClicked)='onRatingClicked($event)'></neutron-rating>
+								<!-- <div class="form-group">
+								    <textarea  class="form-control"  value="" placeholder="Comment*" [attr.maxlength]="50" id="name" formControlName="comment"></textarea>
+								</div> -->
+								<div class="row">
+									<aside class="col-6">
+										<button type="submit" class="blue_btn btn-block">Submit</button>
+									</aside>
+									<aside class="col-6">
+										<a data-dismiss="modal" class="blue_btn">Cancel</a>
+									</aside>
+								</div>
+							</form>
+											
+										</div>
+									</div>
+								</div>
+							</div>
+

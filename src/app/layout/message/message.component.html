@@ -1,0 +1,83 @@
+<section class="chat_page">
+	 <div class="container">
+		<div class="sender_profile">
+			<div class="sender_image pull-left">
+				<img height="70" width="70" class="rounded-circle" src="{{user_data?.profile_image}}">
+				<h3>{{user_data?.first_name}}</h3>
+			</div>
+			<div class="button_right pull-right">
+				<a *ngIf="b_status!='BLOCK'" (click)="Block()" class="button_link">
+					<img src="../assets/images/block.png">
+					Block
+				</a>
+				<a  *ngIf="reported == true" class="button_link">
+					<img src="../assets/images/report.png">
+					Reported
+				</a>
+				<a  *ngIf="reported == false" class="button_link" (click)="Report()">
+					<img src="../assets/images/report.png">
+					Report
+				</a>
+				<a  class="button_link" (click)="RemoveClick()">
+					<img src="../assets/images/delete_btn.png">
+					Delete
+				</a>
+			</div>
+			<div class="clearfix"></div>
+		</div>	
+		<div class="chat_box"  #scrollMe>
+			<div class="chat_bubble_outer" *ngFor="let chat of message_list">
+				<div *ngIf="chat.user_id._id==userid" class="chat_bubble" >{{chat.message}}<span class="chat_time">{{chat.time}}</span></div>
+				<div class="clear"></div>
+
+				<div *ngIf="chat.user_id._id != userid" class="chat_bubble second" >{{chat.message}}<span class="chat_time">{{chat.time}}</span></div>
+				<div class="clear"></div>
+				</div>
+				<!-- <div class="chat_bubble pull-left">I am Fine. <span class="chat_time">12:00pm</span></div> -->
+		</div>	
+	</div> 
+	
+	<div class="input_outer">
+			<div class="container">
+				<input name="user" placeholder="Type a message" type="text"  [(ngModel)]="message" value="{{message}}">
+				<button [disabled]="!message" (click)="sendMessage(message)" class="send_msg">Send</button>
+			</div>
+	</div>	
+</section>
+
+
+	<div class="modal fade" id="request" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-body pop_btn text-center">
+											<p>Are you sure you want to delete your conversation?</p>
+											<a class="blue_btn" (click)="deleteMessage()">Yes</a>
+											<a class="blue_btn" data-dismiss="modal" >No</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="modal fade" id="block" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-body pop_btn text-center">
+											<p>Are you sure you want to block this user?</p>
+											<a class="blue_btn" (click)="blockUser()">Yes</a>
+											<a class="blue_btn" data-dismiss="modal" >No</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+               <div class="modal fade" id="report" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-body pop_btn text-center">
+											<p>Are you sure you want to Report this user?</p>
+											<a class="blue_btn" (click)="reportUser()">Yes</a>
+											<a class="blue_btn" data-dismiss="modal" >No</a>
+										</div>
+									</div>
+								</div>
+							</div>

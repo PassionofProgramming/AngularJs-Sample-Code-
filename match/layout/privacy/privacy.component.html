@@ -1,0 +1,32 @@
+
+<h2>Privacy & Policy</h2>
+<ngx-spinner
+		bdColor = "rgba(51, 51, 51, 0.8)"
+		size = "medium"
+		color = "#fff"
+		type = "ball-climbing-dot"
+		></ngx-spinner>
+<input type="file" #fileupload (change)="onFileChange($event)" id="event_cover" />
+<br/>
+<button class="blue_btn text-uppercase" (click)="updatePrivacy()">Save</button>
+
+
+<div class="uploaded_pdf">
+	<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+	<a target="_blank" href="{{privacydata}}">{{privacydata}}</a>
+</div>
+
+
+<h2>Terms and Conditions </h2>
+
+<input type="file" #fileupload1 (change)="onFileChange($event)"  />
+<br/>
+<button class="blue_btn text-uppercase" (click)="updateTerms()">Save</button>
+
+
+<div class="uploaded_pdf">
+	<i class="fa fa-file-pdf-o" aria-hidden="true"></i>
+	<a target="_blank" href="{{termsdata}}">{{termsdata}}</a>
+</div>
+
+

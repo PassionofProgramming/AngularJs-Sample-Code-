@@ -1,0 +1,18 @@
+<section class="message_page">
+	<div class="container">
+		<h3 class="main_top_heading">Messages</h3>	
+		<div class="message_list">
+			<ul>
+				<li  *ngFor="let chat of message_list">
+					<a [routerLink]="['/message', chat.other_user_id,chat.connection_id]">
+						<img src="{{chat.other_profile_image}}">
+						<h3>{{chat.other_user_name}}
+							<span class="circle_blue">{{chat.messageCount}}</span>
+						</h3>	
+					</a>
+					<p>Last Message {{chat.message_time_ago}}</p>
+				</li>
+			</ul>
+		</div>	
+	</div>
+</section>

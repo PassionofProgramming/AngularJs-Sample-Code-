@@ -1,0 +1,88 @@
+<footer class="main_footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-5">
+                    <h2>Explore SCRIMMAGEMATCH</h2>
+                    <p>SCRIMMAGEMATCH is the official home for matching like for like teams for any sport at any age for scrimmages.  Whether you lead a recreation team that you want to develop through game time or a competitive team that you are looking for more intense competition, SCRIMMAGEMATCH is for you!    For those competing in individual sports, register as an individual and receive the same benefits.  Let's Play!!!</p>
+                    <div class="social_icon">  
+                        <a><i class="fa fa-facebook" aria-hidden="true"></i></a> 
+                        <a><i class="fa fa-twitter" aria-hidden="true"></i></a> 
+                        <a><i class="fa fa-linkedin-square" aria-hidden="true"></i></a>
+                        <a><i class="fa fa-google-plus-official" aria-hidden="true"></i></a> 
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <ul class="footer_list">
+                        <li><a>About Us</a></li>
+                        <li><a (click)="feedback()">Feedback</a></li>
+                        <li><a>How it work’s</a></li>
+                    </ul>
+                </div>
+                <div class="col-sm-4">
+                    <h2>Contact Us</h2>
+                    <ul class="contact_list">
+                        <li><i class="fa fa-map-pin" aria-hidden="true"></i> 11323 E Minton St, Mesa, AZ 85207</li>
+                        <li><i class="fa fa-envelope-open" aria-hidden="true"></i> scrimmagematch@gmail.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="terms">
+                <p>Use of this website constitutes acceptance of the <span><a target="_blank" href="{{termsdata}}">Terms and Conditions</a></span> and <span><a target="_blank" href="{{privacydata}}">Privacy Policy</a></span>.</p>
+            </div>
+        </div>
+        <div class="copy_right">
+            <div class="container">
+                <p>©2012-Present scrimmagematch.com, Inc. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <div class="modal fade" id="feedbackModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+               <div class="modal-content">
+                   <div class="modal-body pop_btn feedback_pop">
+                        <h2 class="text-center">Feedback</h2>
+                   <form  [formGroup]="rForm" (ngSubmit)="addFeedBack(rForm.valid,rForm.value)">
+                 <div class="form-group">
+                    <label for="email">Select Type</label>
+                         <div class="select_outer">
+                            <select class="selectpicker" required formControlName="type">
+                                 <option value=null disabled selected hidden >Select </option>
+                                    <option value="complain">Complain</option>
+                                     <option value="suggest">Suggestion</option>
+                            </select>
+                        </div>
+                   </div>
+
+                    <div *ngIf="rForm.get('type').hasError('required') && rForm.get('type').touched">
+                        <div class="error" *ngIf="rForm.get('type').hasError('required')  && rForm.get('type').touched ">
+                        Type is required
+                        </div>
+                        </div>
+
+                <div class="form-group">
+                    <label for="email">Message</label>
+                         <div>
+                            <textarea class="form-control" placeholder="Enter Text" formControlName="content"></textarea>
+                        </div>
+                   </div>
+
+                   <div *ngIf="rForm.get('content').hasError('required') && rForm.get('content').touched">
+                        <div class="error" *ngIf="rForm.get('content').hasError('required')  && rForm.get('content').touched ">
+                        Message is required
+                        </div>
+                        </div>
+                          <button class="blue_btn btn-block" type="submit">Submit</button>
+                          </form>             
+                            </div>
+                         </div>
+                   </div>
+            </div>
+
+<style type="text/css">
+.error
+{
+color:red;
+}
+
+</style>

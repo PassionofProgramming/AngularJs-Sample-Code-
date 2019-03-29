@@ -1,0 +1,142 @@
+	<div class="header_top">
+		<div class="container">
+			<div class="logo_area">
+				<a class="main_logo_top"><img src="assets/images/logo.png"></a>
+				<a class="mobile_logo"><img src="assets/images/logo2.png"></a>
+			</div>
+		</div>
+	</div>
+<section class="login_sec sign_up">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 offset-md-2 col-sm-6">
+			<div class="heading_wrap text-center sign_up_heading">
+				<h3>Create your account with <span>SCIMMAGEMATCH</span> <br> and <span>Get a 90 Day Free Trial !!</span></h3>
+			</div>
+			<div class="sign_wrap">
+			 <p>Already Member? <span class="sign_term"><a (click)="login()">Sign In</a></span></p>
+			<div class="form_wrap">
+				 <form  [formGroup]="rForm" (ngSubmit)="signUp(rForm.value,rForm.valid)">
+					  <div class="form-group">
+					    <label>First Name</label>
+					    <input type="text" class="form-control" placeholder="Enter your First Name" formControlName="first_name" [attr.maxlength]="50" required>
+					  </div>
+					   <div *ngIf="rForm.get('first_name').hasError('required') && rForm.get('first_name').touched">
+                        <div class="error" *ngIf="rForm.get('first_name').hasError('required')  && rForm.get('first_name').touched ">
+                        First Name is required
+                        </div>
+                        </div>
+
+					  <div class="form-group">
+					    <label>Last Name</label>
+					    <input type="text" class="form-control" placeholder="Enter your Last Name" formControlName="last_name"  [attr.maxlength]="50" required>
+					  </div>
+					  <div *ngIf="rForm.get('last_name').hasError('required') && rForm.get('last_name').touched">
+                        <div class="error" *ngIf="rForm.get('last_name').hasError('required')  && rForm.get('last_name').touched ">
+                        Last Name is required
+                        </div>
+                        </div>
+
+					  <div class="form-group">
+					    <label for="email">Email Address</label>
+					    <input type="email" class="form-control" placeholder="Enter your email address" formControlName="email" [pattern]="emailValidate"  [attr.maxlength]="50" required>
+					  </div>
+					   <div *ngIf="rForm.get('email').hasError('required') && rForm.get('email').touched">
+                        <div class="error" *ngIf="rForm.get('email').hasError('required')  && rForm.get('email').touched ">
+                        Email is required
+                        </div>
+                        </div>
+                         <div *ngIf="rForm.get('email').hasError('pattern') && rForm.get('email').touched">
+                                <div class="error" *ngIf="rForm.get('email').hasError('pattern')  && rForm.get('email').touched ">
+                                    Invalid Email-Address
+                                </div>
+                            </div>
+
+					  <div class="form-group">
+					    <label for="pwd">Password</label>
+					    <input type="password" class="form-control" placeholder="Enter your Password" formControlName="password"  [attr.maxlength]="50" required>
+					  </div>
+					   <div *ngIf="rForm.get('password').hasError('required') && rForm.get('password').touched">
+                        <div class="error" *ngIf="rForm.get('password').hasError('required')  && rForm.get('password').touched ">
+                        Password is required
+                        </div>
+                        </div>
+
+					  <div class="form-group">
+					    <label for="pwd">Confirm Password</label>
+					    <input type="password" class="form-control" placeholder="Confirm Password" formControlName="cpassword"  [attr.maxlength]="50" required >
+					  </div>
+					  <div *ngIf="rForm.get('cpassword').hasError('required') && rForm.get('cpassword').touched">
+                        <div class="error" *ngIf="rForm.get('cpassword').hasError('required')  && rForm.get('cpassword').touched ">
+                        Confirm Password is required
+                        </div>
+                        </div>
+
+					  <button type="submit" class="blue_btn Sign_up_btn btn-block">Sign Up</button>
+					  
+				</form> 
+			</div>
+			<div class="custom_check_outer">
+				<div class="custom_check">
+					  <label class="check_wrap">
+						  <input type="checkbox" [(ngModel)]="terms"/>
+						  <span class="checkmark">
+						  </span>
+					  </label>
+				</div>
+				<p>I accept the <span class="sign_term"><a href="#">Terms & Conditions</a></span> & <span class="sign_term"><a href="#">Privacy Policy</a></span></p>
+			</div>
+
+		</div>
+        </div>
+<div class="col-sm-6 text-center">
+				<div class="social_login">
+					<a><img src="assets/images/facebook_btn.png"  (click)="AcceptTerms('F')"></a>
+					<a><img src="assets/images/google_btn.png"  (click)="AcceptTerms('G')"></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>	
+	
+	
+	
+	
+	<footer class="login_footer">
+		<div class="container">
+			<div class="text-center">
+				<p>Use of this website constitutes acceptance of the <span><a target="_blank" href="{{termsdata}}">Terms and Conditions</a></span> and <span><a target="_blank" href="{{privacydata}}">Privacy Policy</a></span>.</p>
+				<p>©2012-Present scrimmagematch.com, Inc. All rights reserved.</p>
+			</div>
+		</div>
+	</footer> 
+
+
+		<div class="modal fade" id="request" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-body pop_btn text-center">
+											<h3>Accept Terms and Conditions</h3>
+										<div class="custom_check_outer">
+										<div class="custom_check">
+											  <label class="check_wrap">
+												  <input type="checkbox" [(ngModel)]="terms"/>
+												  <span class="checkmark">
+												  </span>
+											  </label>
+										</div>
+										<p>I accept the <span class="sign_term"><a >Terms & Conditions</a></span> & <span class="sign_term"><a>Privacy Policy</a></span></p>
+									</div>
+									<a class="blue_btn small_blue_btn" (click)="doCheck()">OK</a>
+											<a class="blue_btn small_blue_btn" data-dismiss="modal" >CANCEL</a>
+										</div>
+									</div>
+								</div>
+							</div>
+<style type="text/css">
+.error
+{
+color:red;
+}
+
+</style>

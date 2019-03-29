@@ -1,0 +1,74 @@
+	<div class="header_top">
+		<div class="container">
+			<div class="logo_area">
+				<a class="main_logo_top"><img src="assets/images/logo.png"></a>
+				<a class="mobile_logo"><img src="assets/images/logo2.png"></a>
+			</div>
+		</div>
+	</div>
+<section class="login_sec">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-4 offset-md-2 col-sm-6">
+				<div class="heading_wrap">
+					<h3>Sign In to <span>SCIMMAGEMATCH</span></h3>
+					<p>Need an account? <span><a (click)="signup()">Sign Up</a></span></p>
+				</div>
+				<div class="form_wrap">
+					<form  [formGroup]="rForm" (ngSubmit)="Login(rForm.value,rForm.valid)">
+						  <div class="form-group">
+					    <label for="email">Email Address</label>
+					    <input type="email" class="form-control" placeholder="Enter your email address" formControlName="email" [pattern]="emailValidate"  [attr.maxlength]="50" required>
+					  </div>
+					   <div *ngIf="rForm.get('email').hasError('required') && rForm.get('email').touched">
+                        <div class="error" *ngIf="rForm.get('email').hasError('required')  && rForm.get('email').touched ">
+                        Email is required
+                        </div>
+                        </div>
+                         <div *ngIf="rForm.get('email').hasError('pattern') && rForm.get('email').touched">
+                                <div class="error" *ngIf="rForm.get('email').hasError('pattern')  && rForm.get('email').touched ">
+                                    Invalid Email-Id
+                                </div>
+                            </div>
+					 <div class="form-group">
+					    <label for="pwd">Password</label>
+					    <input type="password" class="form-control" placeholder="Enter your Password" formControlName="password"  [attr.maxlength]="50" required>
+					  </div>
+					   <div *ngIf="rForm.get('password').hasError('required') && rForm.get('password').touched">
+                        <div class="error" *ngIf="rForm.get('password').hasError('required')  && rForm.get('password').touched ">
+                        Password is required
+                        </div>
+                        </div>
+						 <button type="submit" class="blue_btn Sign_up_btn btn-block">Sign In</button>
+						  <div class="text-center"><a class="forgot_password" (click)="forgotPassword()">Forgot Password?</a></div>
+					</form> 
+				</div>
+			</div>
+			<div class="col-sm-6 text-center">
+				<div class="social_login">
+					<a><img src="assets/images/facebook_btn.png"  (click)="loginFacebook()"></a>
+					<a><img src="assets/images/google_btn.png"  (click)="loginGoogle()"></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>	
+	
+	
+	
+	
+	<footer class="login_footer">
+		<div class="container">
+			<div class="text-center">
+				<p>Use of this website constitutes acceptance of the <span><a >Terms and Conditions</a></span> and <span><a>Privacy Policy</a></span>.</p>
+				<p>©2012-Present scrimmagematch.com, Inc. All rights reserved.</p>
+			</div>
+		</div>
+	</footer>
+<style type="text/css">
+.error
+{
+color:red;
+}
+
+</style>

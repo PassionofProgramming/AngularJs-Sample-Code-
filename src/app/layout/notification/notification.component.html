@@ -1,0 +1,40 @@
+<section class="message_page">
+	<div class="container">
+		<h3 class="main_top_heading">Notifications</h3>	
+		<div class="notification_list">
+			<ul>
+				<li *ngFor="let data of notify_arry">
+					<img src="../assets/images/notification_logo.png">	
+					<p *ngIf="data.notification_type=='scrimmage_request'">Team <a style="color:#3291d3;">{{data.other_team_id.team_name}}</a> sent you a Scrimmage Request<span class="notification_date">{{data.time_ago}}</span></p>
+					<p *ngIf="data.notification_type=='rating'"><a style="color:#3291d3;">{{data.other_user_id.first_name}} {{data.other_user_id.last_name}} </a>{{data.message}}  {{data.other_team_id.team_name}}<span class="notification_date">{{data.time_ago}}</span></p>
+					<p *ngIf="data.notification_type=='accept_reject'"><a style="color:#3291d3;">Team {{data.other_team_id.team_name}} </a>{{data.message}} <span class="notification_date">{{data.time_ago}}</span></p>
+			<!-- 		<p *ngIf="data.notification_type=='reject'"><a style="color:#3291d3;">{{data.other_user_id.first_name}} {{data.other_user_id.last_name}} </a>{{data.message}}  {{data.other_team_id.team_name}}<span class="notification_date">{{data.time_ago}}</span></p> -->
+				</li>
+				<!-- <li>
+					<img src="../assets/images/notification_logo.png">	
+					<p>You have accepted the Scrimmage Request from <a>Team Warrior</a></p><span class="notification_date">2 days ago</span>
+				</li> -->
+				<!-- <li>
+					<img src="../assets/images/notification_logo.png">	
+					<p>Team <a>Un-Broken</a> sent you a Scrimmage Request</p><span class="notification_date">2 days ago</span>
+				</li>
+				<li>
+					<img src="../assets/images/notification_logo.png">	
+					<p>You have accepted the Scrimmage Request from <a>Team Warrior</a></p><span class="notification_date">2 days ago</span>
+				</li> -->
+				<!-- <li>
+					<img src="../assets/images/notification_logo.png">	
+					<p>Team <a>Un-Broken</a> sent you a Scrimmage Request</p><span class="notification_date">2 days ago</span>
+				</li>
+				<li>
+					<img src="../assets/images/notification_logo.png">	
+					<p>You have accepted the Scrimmage Request from <a>Team Warrior</a></p><span class="notification_date">2 days ago</span>
+				</li> -->
+				
+				
+			
+
+			</ul>
+		</div>	
+	</div>
+</section>
